@@ -166,7 +166,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 _pageController.nextPage(duration: Duration(milliseconds: 200), curve: Curves.easeIn);
                               }
                               else{
-                                Get.offAllNamed(AppRoutes.signUpScreenScreen);
+                                Get.offAllNamed(AppRoutes.signUpScreen);
                               }
                             },
                             child: CustomContainer(

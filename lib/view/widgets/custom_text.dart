@@ -18,6 +18,7 @@ class CustomText extends StatelessWidget {
       this.textHeight,
       this.fontWeight = FontWeight.w400,
       this.color,
+        this.decoration,
       required this.text,
       this.onTap, this.decorationColor});
 
@@ -36,6 +37,7 @@ class CustomText extends StatelessWidget {
   final String? fontName;
   final double? textHeight;
   final VoidCallback? onTap;
+  final TextDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,8 @@ class CustomText extends StatelessWidget {
               fontSize: fontSize ?? 14.sp,
               fontFamily: fontName ?? FontFamily.helvetica,
               fontWeight: fontWeight == null ? FontWeight.w400 : fontWeight,
+              decoration:decoration,
+              // decorationStyle: TextDecorationStyle.solid,
               color: color??Colors.white),
         ),
       ),
