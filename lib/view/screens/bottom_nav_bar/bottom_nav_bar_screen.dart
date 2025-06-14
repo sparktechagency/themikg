@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
+import 'package:themikg/view/screens/home/home_screen.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 
@@ -16,7 +17,7 @@ class BottomNavBarScreen extends StatefulWidget {
 class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   int _selectedIndex = 0;
   final List<Widget> _screens = [
-    Center(child: CustomText(text: 'Home Page')),
+    HomeScreen(),
     Center(child: CustomText(text: 'Explore Page')),
     Center(child: CustomText(text: 'Add Page')),
     Center(child: CustomText(text: 'Message Page')),

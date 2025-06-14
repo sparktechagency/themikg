@@ -7,6 +7,7 @@ import 'package:themikg/view/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:themikg/view/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:themikg/view/screens/auth/splash_screen/splash_screen.dart';
 import 'package:themikg/view/screens/bottom_nav_bar/bottom_nav_bar_screen.dart';
+import 'package:themikg/view/screens/home/home_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splashScreen';
@@ -17,6 +18,7 @@ class AppRoutes {
   static const String forgetPasswordOtpScreen = '/forgetPasswordOtpScreen';
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String bottomNavBarScreen = '/bottomNavBarScreen';
+  static const String homeScreen = '/homeScreen';
 
   static List<GetPage> get routes => [
     GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -27,5 +29,6 @@ class AppRoutes {
     GetPage(name: forgetPasswordOtpScreen, page: () => ForgetPasswordOtpScreen()),
     GetPage(name: resetPasswordScreen, page: () => ResetPasswordScreen()),
     GetPage(name: bottomNavBarScreen, page: () => BottomNavBarScreen()),
+    GetPage(name: homeScreen, page: () => HomeScreen()),
   ];
 }

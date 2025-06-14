@@ -26,6 +26,10 @@ class $AssetsIconsGen {
   SvgGenImage get alertDialogImage =>
       const SvgGenImage('assets/icons/alertDialogImage.svg');
 
+  /// File path: assets/icons/commentIcon.svg
+  SvgGenImage get commentIcon =>
+      const SvgGenImage('assets/icons/commentIcon.svg');
+
   /// File path: assets/icons/emailIcon.svg
   SvgGenImage get emailIcon => const SvgGenImage('assets/icons/emailIcon.svg');
 
@@ -55,6 +59,10 @@ class $AssetsIconsGen {
   SvgGenImage get messageIconActive =>
       const SvgGenImage('assets/icons/messageIconActive.svg');
 
+  /// File path: assets/icons/moreCircleIcon.svg
+  SvgGenImage get moreCircleIcon =>
+      const SvgGenImage('assets/icons/moreCircleIcon.svg');
+
   /// File path: assets/icons/myProfileIcon.svg
   SvgGenImage get myProfileIcon =>
       const SvgGenImage('assets/icons/myProfileIcon.svg');
@@ -66,15 +74,35 @@ class $AssetsIconsGen {
   /// File path: assets/icons/nameIcon.svg
   SvgGenImage get nameIcon => const SvgGenImage('assets/icons/nameIcon.svg');
 
+  /// File path: assets/icons/notificationIcon.svg
+  SvgGenImage get notificationIcon =>
+      const SvgGenImage('assets/icons/notificationIcon.svg');
+
   /// File path: assets/icons/passwordIcon.svg
   SvgGenImage get passwordIcon =>
       const SvgGenImage('assets/icons/passwordIcon.svg');
+
+  /// File path: assets/icons/reactIcon1.svg
+  SvgGenImage get reactIcon1 =>
+      const SvgGenImage('assets/icons/reactIcon1.svg');
+
+  /// File path: assets/icons/reactIcon2.svg
+  SvgGenImage get reactIcon2 =>
+      const SvgGenImage('assets/icons/reactIcon2.svg');
+
+  /// File path: assets/icons/reactIcon3.svg
+  SvgGenImage get reactIcon3 =>
+      const SvgGenImage('assets/icons/reactIcon3.svg');
+
+  /// File path: assets/icons/saveIcon.svg
+  SvgGenImage get saveIcon => const SvgGenImage('assets/icons/saveIcon.svg');
 
   /// List of all assets
   List<SvgGenImage> get values => [
     inboxMessageIcon,
     addIcon,
     alertDialogImage,
+    commentIcon,
     emailIcon,
     exploreIcon,
     exploreIconActive,
@@ -83,10 +111,16 @@ class $AssetsIconsGen {
     homeIcon,
     homeIconActive,
     messageIconActive,
+    moreCircleIcon,
     myProfileIcon,
     myProfileIconActive,
     nameIcon,
+    notificationIcon,
     passwordIcon,
+    reactIcon1,
+    reactIcon2,
+    reactIcon3,
+    saveIcon,
   ];
 }
 
