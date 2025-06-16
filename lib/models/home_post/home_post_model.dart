@@ -4,8 +4,8 @@ class HomePostModel {
   final String userName;
   final String? postTitle;
   final String postImage;
-  final String likeCount;
-  final String commentCount;
+  final int likeCount;
+  final int commentCount;
 
   HomePostModel({
     required this.profilePicture,

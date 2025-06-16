@@ -75,7 +75,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(height: 148.h),
                   CustomButton(
                     onPressed: _onTapSignInButton,
-                    label: 'Sign Up',
+                    label: 'Sign In',
                     fontWeight: FontWeight.w700,
                     fontSize: 20.sp,
                   ),

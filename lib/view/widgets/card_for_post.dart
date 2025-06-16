@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:themikg/app/routes/app_routes.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
+import 'package:themikg/gen/fonts.gen.dart';
 import 'package:themikg/view/widgets/ProductImageCarouselSlider.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_network_image.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 
-class CardForPost extends StatelessWidget {
-  const CardForPost({
+class CardForPost extends StatefulWidget {
+  CardForPost({
     super.key,
     required this.profileImage,
     required this.name,
@@ -24,8 +28,26 @@ class CardForPost extends StatelessWidget {
   final String userName;
   final String postTitle;
   final String postImage;
-  final String likeCount;
-  final String commentCount;
+  final int likeCount;
+  final int commentCount;
+
+  @override
+  State<CardForPost> createState() => _CardForPostState();
+}
+
+class _CardForPostState extends State<CardForPost> {
+  int selectedIndex = -1;
+  int selectedSaveButton = 0;
+  final List<String> reactIcon = [
+    Assets.icons.reactIcon1.path,
+    Assets.icons.reactIcon2.path,
+    Assets.icons.reactIcon3.path,
+  ];
+  final List<String> bottomSheetButton = [
+    'View Profile',
+    'Block Profile',
+    'Report...',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -52,22 +74,68 @@ class CardForPost extends StatelessWidget {
             ListTile(
               contentPadding: EdgeInsets.all(0),
               leading: CustomNetworkImage(
-                imageUrl: profileImage,
+                imageUrl: widget.profileImage,
                 height: 41.h,
                 width: 41.w,
                 boxShape: BoxShape.circle,
               ),
-              title: CustomText(text: userName, textAlign: TextAlign.start),
+              title: CustomText(
+                text: widget.userName,
+                textAlign: TextAlign.start,
+              ),
               subtitle: CustomText(
-                text: name,
+                text: widget.name,
                 textAlign: TextAlign.start,
                 fontSize: 12.sp,
                 color: AppColors.greyColor,
               ),
-              trailing: Assets.icons.moreCircleIcon.svg(),
+              trailing: GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    scrollControlDisabledMaxHeightRatio: .20,
+                    builder: (context) {
+                      return CustomContainer(
+                        width: double.infinity,
+                        topLeftRadius: 24.r,
+                        topRightRadius: 24.r,
+                        color: AppColors.bgColor,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: List.generate(bottomSheetButton.length, (
+                            index,
+                          ) {
+                            return TextButton(
+                              // autofocus: true,
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.transparent,
+                                overlayColor: AppColors.primaryColor
+                                    .withOpacity(0.2),
+
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                ),
+                              ),
+                              onPressed: () {},
+                              child: CustomText(
+                                text: bottomSheetButton[index],
+                                fontSize: 18.sp,
+                                // fontName: FontFamily.trajanPro,
+                                fontWeight: FontWeight.w700,
+                                color: index == 2 ? AppColors.errorColor : null,
+                              ),
+                            );
+                          }),
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Assets.icons.moreCircleIcon.svg(),
+              ),
             ),
             CustomText(
-              text: postTitle,
+              text: widget.postTitle,
               textAlign: TextAlign.start,
               fontSize: 12.sp,
             ),
@@ -84,7 +152,7 @@ class CardForPost extends StatelessWidget {
             //     borderRadius: BorderRadius.circular(16.r),
             //   ),
             // ),
-            ProductImageCarouselSlider(imageUrl: postImage),
+            ProductImageCarouselSlider(imageUrl: widget.postImage),
             SizedBox(height: 16.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,16 +160,51 @@ class CardForPost extends StatelessWidget {
                 Row(
                   spacing: 8.r,
                   children: [
-                    Assets.icons.reactIcon1.svg(),
-                    Assets.icons.reactIcon2.svg(),
-                    Assets.icons.reactIcon3.svg(),
-                    CustomText(text: likeCount),
+                    Row(
+                      children: List.generate(reactIcon.length, (index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.w),
+                            child: SvgPicture.asset(
+                              // height: 20.h,
+                              // width: 20.w,
+                              reactIcon[index],
+                              color: selectedIndex == index
+                                  ? AppColors.primaryColor
+                                  : null,
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+
+                    CustomText(text: widget.likeCount.toString()),
                     SizedBox(width: 8.w),
-                    Assets.icons.commentIcon.svg(),
-                    CustomText(text: commentCount),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(AppRoutes.commentScreen);
+                      },
+                        child: Assets.icons.commentIcon.svg()),
+                    CustomText(text: widget.commentCount.toString()),
                   ],
                 ),
-                Assets.icons.saveIcon.svg(),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedSaveButton = selectedSaveButton == 0 ? 1 : 0;
+                    });
+                  },
+                  child: Assets.icons.saveIcon.svg(
+                    color: selectedSaveButton == 1
+                        ? AppColors.primaryColor
+                        : null,
+                  ),
+                ),
               ],
             ),
           ],

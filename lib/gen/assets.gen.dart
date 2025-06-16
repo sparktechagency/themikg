@@ -41,6 +41,14 @@ class $AssetsIconsGen {
   SvgGenImage get exploreIconActive =>
       const SvgGenImage('assets/icons/exploreIconActive.svg');
 
+  /// File path: assets/icons/exploreInterestIcon.svg
+  SvgGenImage get exploreInterestIcon =>
+      const SvgGenImage('assets/icons/exploreInterestIcon.svg');
+
+  /// File path: assets/icons/exploreInterestIconActive.svg
+  SvgGenImage get exploreInterestIconActive =>
+      const SvgGenImage('assets/icons/exploreInterestIconActive.svg');
+
   /// File path: assets/icons/eyeOffIcon.svg
   SvgGenImage get eyeOffIcon =>
       const SvgGenImage('assets/icons/eyeOffIcon.svg');
@@ -71,8 +79,9 @@ class $AssetsIconsGen {
   SvgGenImage get myProfileIconActive =>
       const SvgGenImage('assets/icons/myProfileIconActive.svg');
 
-  /// File path: assets/icons/nameIcon.svg
-  SvgGenImage get nameIcon => const SvgGenImage('assets/icons/nameIcon.svg');
+  /// File path: assets/icons/nameFieldIcon.svg
+  SvgGenImage get nameFieldIcon =>
+      const SvgGenImage('assets/icons/nameFieldIcon.svg');
 
   /// File path: assets/icons/notificationIcon.svg
   SvgGenImage get notificationIcon =>
@@ -97,6 +106,22 @@ class $AssetsIconsGen {
   /// File path: assets/icons/saveIcon.svg
   SvgGenImage get saveIcon => const SvgGenImage('assets/icons/saveIcon.svg');
 
+  /// File path: assets/icons/searchIcon.svg
+  SvgGenImage get searchIcon =>
+      const SvgGenImage('assets/icons/searchIcon.svg');
+
+  /// File path: assets/icons/searchPeopleIcon.svg
+  SvgGenImage get searchPeopleIcon =>
+      const SvgGenImage('assets/icons/searchPeopleIcon.svg');
+
+  /// File path: assets/icons/universeExploreIcon.svg
+  SvgGenImage get universeExploreIcon =>
+      const SvgGenImage('assets/icons/universeExploreIcon.svg');
+
+  /// File path: assets/icons/universeExploreIconActive.svg
+  SvgGenImage get universeExploreIconActive =>
+      const SvgGenImage('assets/icons/universeExploreIconActive.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
     inboxMessageIcon,
@@ -106,6 +131,8 @@ class $AssetsIconsGen {
     emailIcon,
     exploreIcon,
     exploreIconActive,
+    exploreInterestIcon,
+    exploreInterestIconActive,
     eyeOffIcon,
     eyeOnIcon,
     homeIcon,
@@ -114,13 +141,17 @@ class $AssetsIconsGen {
     moreCircleIcon,
     myProfileIcon,
     myProfileIconActive,
-    nameIcon,
+    nameFieldIcon,
     notificationIcon,
     passwordIcon,
     reactIcon1,
     reactIcon2,
     reactIcon3,
     saveIcon,
+    searchIcon,
+    searchPeopleIcon,
+    universeExploreIcon,
+    universeExploreIconActive,
   ];
 }
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:story_view/controller/story_controller.dart';
 import 'package:story_view/story_view.dart';
+import 'package:themikg/app/routes/app_routes.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/models/home_post/home_post_model.dart';
@@ -37,8 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
       postTitle: 'Quel plaisir de retrouver mes étudiants de Web 2 !',
       postImage: 'https://picsum.photos/id/1011/400/300',
       // random image 1
-      commentCount: '4574',
-      likeCount: '1,124',
+      commentCount: 95,
+      likeCount: 834,
     ),
     HomePostModel(
       profilePicture: 'https://i.pravatar.cc/150?img=41',
@@ -47,8 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
       postTitle: 'Just finished my Flutter project!',
       postImage: 'https://picsum.photos/id/1025/400/300',
       // random image 2
-      commentCount: '328',
-      likeCount: '2,543',
+      commentCount: 95,
+      likeCount: 834,
     ),
     HomePostModel(
       profilePicture: 'https://i.pravatar.cc/150?img=42',
@@ -57,8 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
       postTitle: 'Weekend getaway 🌲🌊',
       postImage: 'https://picsum.photos/id/1043/400/300',
       // random image 3
-      commentCount: '95',
-      likeCount: '973',
+      commentCount: 95,
+      likeCount: 834,
     ),
     HomePostModel(
       profilePicture: 'https://i.pravatar.cc/150?img=43',
@@ -67,8 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
       postTitle: 'Weekend getaway 🌲🌊',
       postImage: 'https://picsum.photos/id/1045/400/300',
       // random image 3
-      commentCount: '95',
-      likeCount: '973',
+      commentCount: 95,
+      likeCount: 834,
     ),
     HomePostModel(
       profilePicture: 'https://i.pravatar.cc/150?img=44',
@@ -77,8 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
       postTitle: 'Weekend getaway 🌲🌊',
       postImage: 'https://picsum.photos/id/1017/400/300',
       // random image 3
-      commentCount: '95',
-      likeCount: '973',
+      commentCount: 95,
+      likeCount: 834,
     ),
   ];
 
@@ -96,7 +98,11 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Padding(
             padding: EdgeInsets.only(left: 16.w),
-            child: Assets.icons.notificationIcon.svg(),
+            child: GestureDetector(
+              onTap: (){
+                Get.toNamed(AppRoutes.notificationsScreen);
+              },
+                child: Assets.icons.notificationIcon.svg()),
           ),
         ],
       ),
@@ -136,12 +142,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder:
-                              (_) => StoryScreen(
-                                stories: dummyImage,
-                                userName: _postList[index].userName,
-                                profileImage: _postList[index].profilePicture,
-                              ),
+                          builder: (_) => StoryScreen(
+                            stories: dummyImage,
+                            userName: _postList[index].userName,
+                            profileImage: _postList[index].profilePicture,
+                          ),
                         ),
                       );
                     },
@@ -179,14 +184,13 @@ class StoryScreen extends StatelessWidget {
       body: Stack(
         children: [
           StoryView(
-            storyItems:
-                stories.map((url) {
-                  return StoryItem.pageImage(
-                    url: url,
-                    controller: controller,
-                    duration: const Duration(seconds: 5),
-                  );
-                }).toList(),
+            storyItems: stories.map((url) {
+              return StoryItem.pageImage(
+                url: url,
+                controller: controller,
+                duration: const Duration(seconds: 5),
+              );
+            }).toList(),
             controller: controller,
             onComplete: () => Navigator.pop(context),
             onVerticalSwipeComplete: (direction) {

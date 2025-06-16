@@ -60,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       filColor: AppColors.secondaryColor,
                       hintText: 'Explorer name',
                       textInputAction: TextInputAction.next,
-                      prefixIcon: Assets.icons.nameIcon.svg(),
+                      prefixIcon: Assets.icons.nameFieldIcon.svg(),
                     ),
                     SizedBox(height: 16.h),
                     CustomTextField(

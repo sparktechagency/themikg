@@ -27,7 +27,7 @@ class CircleProfileForStory extends StatelessWidget {
               height: 70.h,
               width: 70.w,
               shape: BoxShape.circle,
-              border: Border.all(color: AppColors.primaryColor,width: 3.w),
+              border: Border.all(color: AppColors.primaryColor,width: 2.w),
             ),
             CustomContainer(
               alignment: Alignment.center,

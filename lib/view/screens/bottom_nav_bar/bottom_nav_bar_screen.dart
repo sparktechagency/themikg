@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
+import 'package:themikg/view/screens/explore/explore_screen.dart';
 import 'package:themikg/view/screens/home/home_screen.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
@@ -18,7 +19,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   int _selectedIndex = 0;
   final List<Widget> _screens = [
     HomeScreen(),
-    Center(child: CustomText(text: 'Explore Page')),
+    ExploreScreen(),
     Center(child: CustomText(text: 'Add Page')),
     Center(child: CustomText(text: 'Message Page')),
     Center(child: CustomText(text: 'Profile Page')),
@@ -31,7 +32,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
       bottomNavigationBar: SafeArea(
         child: CustomContainer(
           height: 99.h,
-          color: AppColors.greyColor,
+          color: AppColors.borderColor,
           topLeftRadius: 20.sp,
           topRightRadius: 20.sp,
           child: Row(
