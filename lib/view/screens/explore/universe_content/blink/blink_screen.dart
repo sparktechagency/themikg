@@ -156,7 +156,7 @@ class _ReelsScreenState extends State<ReelsScreen> {
     _videoPlayerController =
         VideoPlayerController.networkUrl(
             Uri.parse(
-              'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+              'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
             ),
           )
           ..initialize().then((_) {
@@ -208,7 +208,7 @@ class _ReelsScreenState extends State<ReelsScreen> {
               if (_showController)
                 Positioned.fill(
                   child: Align(
-                    alignment: Alignment.center,
+                    alignment: Alignment(0.0, -0.1),
                     child: IconButton(
                       onPressed: () {
                         setState(() {
