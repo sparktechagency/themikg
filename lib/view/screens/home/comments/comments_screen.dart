@@ -24,6 +24,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
       comment:
           'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       likeCount: 453,
+      commentTime: DateTime.now(),
     ),
     CommentModel(
       profileImage: "https://i.pravatar.cc/150?img=21",
@@ -32,6 +33,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
       comment:
           'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       likeCount: 453,
+      commentTime: DateTime.now(),
     ),
     CommentModel(
       profileImage: "https://i.pravatar.cc/150?img=22",
@@ -40,6 +42,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
       comment:
           'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       likeCount: 453,
+      commentTime: DateTime.now(),
     ),
   ];
   List<String> bottomSheetButton = ['Edit', 'Delete'];
@@ -58,7 +61,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
               userName: commentData[index].userName,
               name: commentData[index].name,
               commentText: commentData[index].comment,
-              commentLikesCount: commentData[index].likeCount ,
+              commentLikesCount: commentData[index].likeCount,
             ),
           );
         },

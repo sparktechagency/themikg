@@ -15,6 +15,8 @@ class CustomGlobalAppBar extends StatelessWidget
     this.centerTitle = true,
     this.showBorder = false,
     this.flexibleSpace,
+    this.titleStyle,
+    this.backgroundColor
   });
 
   final String? title;
@@ -26,6 +28,8 @@ class CustomGlobalAppBar extends StatelessWidget
   final bool showBorder;
   final List<Widget>? actions;
   final VoidCallback? backAction;
+  final TextStyle? titleStyle;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +42,7 @@ class CustomGlobalAppBar extends StatelessWidget
       centerTitle: centerTitle,
       elevation: 0,
       foregroundColor: Colors.white,
+      backgroundColor:backgroundColor ,
       automaticallyImplyLeading: false,
       scrolledUnderElevation: 0,
       leading:
@@ -48,7 +53,7 @@ class CustomGlobalAppBar extends StatelessWidget
                   child: Icon(
                     Icons.arrow_back,
                     color: Colors.white,
-                    size: 20.sp,
+                    size: 24.sp,
                   ),
                 ),
               )
@@ -57,7 +62,7 @@ class CustomGlobalAppBar extends StatelessWidget
           title != null && title != ''
               ? Text(
                 title!,
-                style: TextStyle(
+                style:titleStyle?? TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: titleSize.sp,
                   color: Colors.white,

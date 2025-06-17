@@ -31,7 +31,7 @@ class CustomButton extends StatelessWidget {
       this.elevation = false});
 
   final Widget? suffixIcon;
-  final IconData? prefixIcon;
+  final Widget? prefixIcon;
   final Widget? child;
   final String? label;
   final Widget? title;
@@ -71,13 +71,7 @@ class CustomButton extends StatelessWidget {
           children: [
             /// Prefix Icon
             if (prefixIcon != null || prefixIconShow == true) ...[
-              Icon(
-                size: 18.r,
-                prefixIcon ?? Icons.arrow_back,
-
-                /// Use prefixIcon or fallback
-                color: foregroundColor ?? Colors.white,
-              ),
+              prefixIcon??Icon(Icons.arrow_back),
               SizedBox(width: 8.w),
             ],
 

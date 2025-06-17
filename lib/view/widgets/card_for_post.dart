@@ -71,6 +71,7 @@ class _CardForPostState extends State<CardForPost> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ///<<<<<========Post header (name, userName,Profile pic)==========>>>>
             ListTile(
               contentPadding: EdgeInsets.all(0),
               leading: CustomNetworkImage(
@@ -134,29 +135,22 @@ class _CardForPostState extends State<CardForPost> {
                 child: Assets.icons.moreCircleIcon.svg(),
               ),
             ),
+            ///<<<<<=====================Post section=====================>>>>
+
             CustomText(
               text: widget.postTitle,
               textAlign: TextAlign.start,
               fontSize: 12.sp,
             ),
             SizedBox(height: 16.h),
-            // CustomContainer(
-            //   height: 327.h,
-            //   width: 327.w,
-            //   topLeftRadius: 16.r,
-            //   topRightRadius: 16.r,
-            //   bottomLeft: 16.r,
-            //   bottomRight: 16.r,
-            //   child: CustomNetworkImage(
-            //     imageUrl: 'https://i.pravatar.cc/150?img=48',
-            //     borderRadius: BorderRadius.circular(16.r),
-            //   ),
-            // ),
+            ///<<<<<===================Post Image=====================>>>>
+
             ProductImageCarouselSlider(imageUrl: widget.postImage),
             SizedBox(height: 16.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                ///<<<<<================Post React Comment and Save button========================>>>>
                 Row(
                   spacing: 8.r,
                   children: [

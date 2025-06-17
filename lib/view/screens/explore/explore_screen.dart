@@ -5,7 +5,9 @@ import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/gen/fonts.gen.dart';
 import 'package:themikg/view/screens/explore/interest_people/interest_people_screen.dart';
+import 'package:themikg/view/screens/explore/people_by_location/people_by_location_screen.dart';
 import 'package:themikg/view/screens/explore/profile_content/profile_content_screen.dart';
+import 'package:themikg/view/screens/explore/universe_content/universe_content_screen.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 
@@ -62,12 +64,12 @@ class _ExploreScreenState extends State<ExploreScreen>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  _buildTabContent('Universe Content'),
+                  // _buildTabContent('Universe Content'),
+                  UniverseContentScreen(),
                   ProfileContentScreen(),
-                  // _buildTabContent('Profile Content'),
-                  // _buildTabContent('Interests Content'),
                   InterestPeopleScreen(),
-                  _buildTabContent('People Content'),
+                  // _buildTabContent('People Content'),
+                  PeopleByLocationScreen()
                 ],
               ),
             ),

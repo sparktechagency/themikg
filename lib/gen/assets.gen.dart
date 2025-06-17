@@ -26,6 +26,9 @@ class $AssetsIconsGen {
   SvgGenImage get alertDialogImage =>
       const SvgGenImage('assets/icons/alertDialogImage.svg');
 
+  /// File path: assets/icons/blinkIcon.svg
+  SvgGenImage get blinkIcon => const SvgGenImage('assets/icons/blinkIcon.svg');
+
   /// File path: assets/icons/commentIcon.svg
   SvgGenImage get commentIcon =>
       const SvgGenImage('assets/icons/commentIcon.svg');
@@ -87,6 +90,9 @@ class $AssetsIconsGen {
   SvgGenImage get notificationIcon =>
       const SvgGenImage('assets/icons/notificationIcon.svg');
 
+  /// File path: assets/icons/orbitIcon.svg
+  SvgGenImage get orbitIcon => const SvgGenImage('assets/icons/orbitIcon.svg');
+
   /// File path: assets/icons/passwordIcon.svg
   SvgGenImage get passwordIcon =>
       const SvgGenImage('assets/icons/passwordIcon.svg');
@@ -127,6 +133,7 @@ class $AssetsIconsGen {
     inboxMessageIcon,
     addIcon,
     alertDialogImage,
+    blinkIcon,
     commentIcon,
     emailIcon,
     exploreIcon,
@@ -143,6 +150,7 @@ class $AssetsIconsGen {
     myProfileIconActive,
     nameFieldIcon,
     notificationIcon,
+    orbitIcon,
     passwordIcon,
     reactIcon1,
     reactIcon2,
@@ -173,6 +181,10 @@ class $AssetsImagesGen {
   AssetGenImage get onboardingImage3 =>
       const AssetGenImage('assets/images/onboardingImage3.png');
 
+  /// File path: assets/images/searchByLocationImage.png
+  AssetGenImage get searchByLocationImage =>
+      const AssetGenImage('assets/images/searchByLocationImage.png');
+
   /// File path: assets/images/splashScreenBgImage.gif
   AssetGenImage get splashScreenBgImage =>
       const AssetGenImage('assets/images/splashScreenBgImage.gif');
@@ -183,6 +195,7 @@ class $AssetsImagesGen {
     onboardingImage1,
     onboardingImage2,
     onboardingImage3,
+    searchByLocationImage,
     splashScreenBgImage,
   ];
 }
