@@ -74,6 +74,9 @@ class $AssetsIconsGen {
   SvgGenImage get moreCircleIcon =>
       const SvgGenImage('assets/icons/moreCircleIcon.svg');
 
+  /// File path: assets/icons/moreIcon.svg
+  SvgGenImage get moreIcon => const SvgGenImage('assets/icons/moreIcon.svg');
+
   /// File path: assets/icons/myProfileIcon.svg
   SvgGenImage get myProfileIcon =>
       const SvgGenImage('assets/icons/myProfileIcon.svg');
@@ -146,6 +149,7 @@ class $AssetsIconsGen {
     homeIconActive,
     messageIconActive,
     moreCircleIcon,
+    moreIcon,
     myProfileIcon,
     myProfileIconActive,
     nameFieldIcon,
@@ -181,6 +185,10 @@ class $AssetsImagesGen {
   AssetGenImage get onboardingImage3 =>
       const AssetGenImage('assets/images/onboardingImage3.png');
 
+  /// File path: assets/images/piroscop.png
+  AssetGenImage get piroscop =>
+      const AssetGenImage('assets/images/piroscop.png');
+
   /// File path: assets/images/searchByLocationImage.png
   AssetGenImage get searchByLocationImage =>
       const AssetGenImage('assets/images/searchByLocationImage.png');
@@ -195,6 +203,7 @@ class $AssetsImagesGen {
     onboardingImage1,
     onboardingImage2,
     onboardingImage3,
+    piroscop,
     searchByLocationImage,
     splashScreenBgImage,
   ];
