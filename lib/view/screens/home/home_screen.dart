@@ -8,6 +8,7 @@ import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/models/home_post/home_post_model.dart';
 import 'package:themikg/models/story_model/story_model.dart';
+import 'package:themikg/view/screens/story_screen/story_screen.dart';
 import 'package:themikg/view/widgets/ProductImageCarouselSlider.dart';
 import 'package:themikg/view/widgets/card_for_post.dart';
 import 'package:themikg/view/widgets/circle_profile_for_story.dart';
@@ -99,10 +100,11 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: EdgeInsets.only(left: 16.w),
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 Get.toNamed(AppRoutes.notificationsScreen);
               },
-                child: Assets.icons.notificationIcon.svg()),
+              child: Assets.icons.notificationIcon.svg(),
+            ),
           ),
         ],
       ),
@@ -139,14 +141,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   GestureDetector(
                     onTap: () {
                       // Open story screen
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => StoryScreen(
-                            stories: dummyImage,
-                            userName: _postList[index].userName,
-                            profileImage: _postList[index].profilePicture,
-                          ),
+                      Get.to(
+                        StoryScreen(
+                          stories: dummyImage,
+                          userName: _postList[index].userName,
+                          profileImage: _postList[index].profilePicture,
                         ),
                       );
                     },
@@ -160,105 +159,6 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
         ),
-      ),
-    );
-  }
-}
-
-class StoryScreen extends StatelessWidget {
-  final List<String> stories;
-  final String profileImage;
-  final String userName;
-  final StoryController controller = StoryController();
-
-  StoryScreen({
-    super.key,
-    required this.stories,
-    required this.profileImage,
-    required this.userName,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          StoryView(
-            storyItems: stories.map((url) {
-              return StoryItem.pageImage(
-                url: url,
-                controller: controller,
-                duration: const Duration(seconds: 5),
-              );
-            }).toList(),
-            controller: controller,
-            onComplete: () => Navigator.pop(context),
-            onVerticalSwipeComplete: (direction) {
-              if (direction == Direction.down) Navigator.pop(context);
-            },
-          ),
-
-          // 🔼 Top Profile Row
-          Positioned(
-            top: 50.h,
-            left: 16.w,
-            right: 16.w,
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 20.r,
-                  backgroundImage: NetworkImage(profileImage),
-                ),
-                SizedBox(width: 10.w),
-                Text(
-                  userName,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.sp,
-                  ),
-                ),
-                const Spacer(),
-                IconButton(
-                  icon: const Icon(Icons.close, color: Colors.white),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ],
-            ),
-          ),
-
-          // 🔽 Bottom Comment Input
-          Positioned(
-            bottom: 30.h,
-            left: 16.w,
-            right: 16.w,
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    style: const TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      hintText: "Send message...",
-                      hintStyle: TextStyle(color: Colors.white70),
-                      filled: true,
-                      fillColor: Colors.black26,
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 16.w,
-                        vertical: 10.h,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.r),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 8.w),
-                Icon(Icons.send, color: Colors.white),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

@@ -10,12 +10,15 @@ import 'package:themikg/view/screens/bottom_nav_bar/bottom_nav_bar_screen.dart';
 import 'package:themikg/view/screens/explore/explore_screen.dart';
 import 'package:themikg/view/screens/explore/people_by_location/people_by_location_screen.dart';
 import 'package:themikg/view/screens/explore/universe_content/blink/blink_screen.dart';
+import 'package:themikg/view/screens/explore/universe_content/blink/blink_video/blink_video_screen.dart';
 import 'package:themikg/view/screens/explore/universe_content/orbit/orbit_post/orbit_post_screen.dart';
 import 'package:themikg/view/screens/explore/universe_content/orbit/orbit_screen.dart';
 import 'package:themikg/view/screens/explore/universe_content/universe_content_screen.dart';
 import 'package:themikg/view/screens/home/comments/comments_screen.dart';
 import 'package:themikg/view/screens/home/home_screen.dart';
 import 'package:themikg/view/screens/home/notifications/notifications_screen.dart';
+import 'package:themikg/view/screens/message/inbox_message/inbox_message_screen.dart';
+import 'package:themikg/view/screens/message/message_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splashScreen';
@@ -35,6 +38,9 @@ class AppRoutes {
   static const String orbitScreen = '/orbitScreen';
   static const String orbitPostScreen = '/orbitPostScreen';
   static const String reelsScreen = '/reelsScreen';
+  static const String messageScreen = '/messageScreen';
+  static const String inboxMessageScreen = '/inboxMessageScreen';
+
 
   static List<GetPage> get routes => [
     GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -53,6 +59,8 @@ class AppRoutes {
     GetPage(name: universeContentScreen, page: () => UniverseContentScreen()),
     GetPage(name: orbitScreen, page: () => OrbitScreen()),
     GetPage(name: orbitPostScreen, page: () => OrbitPostScreen()),
-    // GetPage(name: reelsScreen, page: () => ReelsScreen(reelsList: reelsList)),
+    GetPage(name: reelsScreen, page: () => ReelsScreen()),
+    GetPage(name: messageScreen, page: () => MessageScreen()),
+    GetPage(name: inboxMessageScreen, page: () => InboxMessageScreen()),
   ];
 }

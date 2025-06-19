@@ -6,7 +6,10 @@ class AppThemeData {
   static ThemeData get darkTheme {
     return ThemeData(
       scaffoldBackgroundColor: AppColors.bgColor,
-      useMaterial3: true,
+      // useMaterial3: true,
+      inputDecorationTheme: InputDecorationTheme(
+        counterStyle: TextStyle(decoration: TextDecoration.none),
+      ),
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.bgColor,
         systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(

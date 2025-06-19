@@ -8,4 +8,5 @@ class AppColors {
   static const Color greyColor = Color(0xFF999999);
   static const Color postCardColor = Color(0xFF1E1E1E);
   static const Color errorColor = Color(0xFFF70004);
+  static const Color filledColor = Color(0xFF212121);
 }

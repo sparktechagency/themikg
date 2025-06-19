@@ -5,6 +5,7 @@ import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/view/screens/explore/explore_screen.dart';
 import 'package:themikg/view/screens/home/home_screen.dart';
+import 'package:themikg/view/screens/message/message_screen.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 
@@ -21,7 +22,8 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     HomeScreen(),
     ExploreScreen(),
     Center(child: CustomText(text: 'Add Page')),
-    Center(child: CustomText(text: 'Message Page')),
+    // Center(child: CustomText(text: 'Message Page')),
+    MessageScreen(),
     Center(child: CustomText(text: 'Profile Page')),
   ];
 

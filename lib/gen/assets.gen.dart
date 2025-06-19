@@ -66,6 +66,10 @@ class $AssetsIconsGen {
   SvgGenImage get homeIconActive =>
       const SvgGenImage('assets/icons/homeIconActive.svg');
 
+  /// File path: assets/icons/inboxMessageBackgroundImage.png
+  AssetGenImage get inboxMessageBackgroundImage =>
+      const AssetGenImage('assets/icons/inboxMessageBackgroundImage.png');
+
   /// File path: assets/icons/messageIconActive.svg
   SvgGenImage get messageIconActive =>
       const SvgGenImage('assets/icons/messageIconActive.svg');
@@ -123,6 +127,10 @@ class $AssetsIconsGen {
   SvgGenImage get searchPeopleIcon =>
       const SvgGenImage('assets/icons/searchPeopleIcon.svg');
 
+  /// File path: assets/icons/sendMessageIcon.svg
+  SvgGenImage get sendMessageIcon =>
+      const SvgGenImage('assets/icons/sendMessageIcon.svg');
+
   /// File path: assets/icons/universeExploreIcon.svg
   SvgGenImage get universeExploreIcon =>
       const SvgGenImage('assets/icons/universeExploreIcon.svg');
@@ -132,7 +140,7 @@ class $AssetsIconsGen {
       const SvgGenImage('assets/icons/universeExploreIconActive.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [
+  List<dynamic> get values => [
     inboxMessageIcon,
     addIcon,
     alertDialogImage,
@@ -147,6 +155,7 @@ class $AssetsIconsGen {
     eyeOnIcon,
     homeIcon,
     homeIconActive,
+    inboxMessageBackgroundImage,
     messageIconActive,
     moreCircleIcon,
     moreIcon,
@@ -162,6 +171,7 @@ class $AssetsIconsGen {
     saveIcon,
     searchIcon,
     searchPeopleIcon,
+    sendMessageIcon,
     universeExploreIcon,
     universeExploreIconActive,
   ];
