@@ -17,7 +17,10 @@ import 'package:themikg/view/screens/explore/universe_content/universe_content_s
 import 'package:themikg/view/screens/home/comments/comments_screen.dart';
 import 'package:themikg/view/screens/home/home_screen.dart';
 import 'package:themikg/view/screens/home/notifications/notifications_screen.dart';
+import 'package:themikg/view/screens/message/inbox_message/audio_call/audio_call_screen.dart';
 import 'package:themikg/view/screens/message/inbox_message/inbox_message_screen.dart';
+import 'package:themikg/view/screens/message/inbox_message/video_call/video_call_screen.dart';
+import 'package:themikg/view/screens/message/media/media_screen.dart';
 import 'package:themikg/view/screens/message/message_screen.dart';
 
 class AppRoutes {
@@ -40,6 +43,9 @@ class AppRoutes {
   static const String reelsScreen = '/reelsScreen';
   static const String messageScreen = '/messageScreen';
   static const String inboxMessageScreen = '/inboxMessageScreen';
+  static const String mediaScreen = '/mediaScreen';
+  static const String audioCallScreen = '/audioCallScreen';
+  static const String videoCallScreen = '/videoCallScreen';
 
 
   static List<GetPage> get routes => [
@@ -62,5 +68,8 @@ class AppRoutes {
     GetPage(name: reelsScreen, page: () => ReelsScreen()),
     GetPage(name: messageScreen, page: () => MessageScreen()),
     GetPage(name: inboxMessageScreen, page: () => InboxMessageScreen()),
+    GetPage(name: mediaScreen, page: () => MediaScreen()),
+    GetPage(name: audioCallScreen, page: () => AudioCallScreen()),
+    GetPage(name: videoCallScreen, page: () => VideoCallScreen()),
   ];
 }

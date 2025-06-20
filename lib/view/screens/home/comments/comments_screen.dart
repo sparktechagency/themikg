@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/models/comment_model/comment_model.dart';
+import 'package:themikg/view/widgets/custom_bottom_sheet.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_global_app_bar.dart';
 import 'package:themikg/view/widgets/custom_network_image.dart';
@@ -22,7 +23,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
       name: 'James Hudson',
       userName: 'j_hudson',
       comment:
-          'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       likeCount: 453,
       commentTime: DateTime.now(),
     ),
@@ -31,7 +32,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
       name: 'Lina Suarez',
       userName: 'lina_s',
       comment:
-          'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       likeCount: 453,
       commentTime: DateTime.now(),
     ),
@@ -40,7 +41,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
       name: 'Lina Suarez',
       userName: 'lina_s',
       comment:
-          'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       likeCount: 453,
       commentTime: DateTime.now(),
     ),
@@ -92,10 +93,11 @@ class CommentWidget extends StatefulWidget {
 
 class _CommentWidgetState extends State<CommentWidget> {
   int selectedIndex = 0;
+  List<String> bottomSheetButton = ['Edit', 'Delete'];
+  final List<VoidCallback> bottomSheetButtonAction = [() {}, () {}];
 
   @override
   Widget build(BuildContext context) {
-    List<String> bottomSheetButton = ['Edit', 'Delete'];
     return Column(
       children: [
         ListTile(
@@ -115,46 +117,9 @@ class _CommentWidgetState extends State<CommentWidget> {
           ),
           trailing: GestureDetector(
             onTap: () {
-              showModalBottomSheet(
-                context: context,
-                scrollControlDisabledMaxHeightRatio: .15,
-                builder: (context) {
-                  return CustomContainer(
-                    width: double.infinity,
-                    topLeftRadius: 24.r,
-                    topRightRadius: 24.r,
-                    color: AppColors.bgColor,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: List.generate(bottomSheetButton.length, (
-                        index,
-                      ) {
-                        return TextButton(
-                          // autofocus: true,
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            overlayColor: AppColors.primaryColor.withOpacity(
-                              0.2,
-                            ),
-
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: CustomText(
-                            text: bottomSheetButton[index],
-                            fontSize: 18.sp,
-                            // fontName: FontFamily.trajanPro,
-                            fontWeight: FontWeight.w700,
-                            color: index == 2 ? AppColors.errorColor : null,
-                          ),
-                        );
-                      }),
-                    ),
-                  );
-                },
-              );
+              customBottomSheet(context: context,
+                  buttons: bottomSheetButton,
+                  onPressedCallbacks: bottomSheetButtonAction);
             },
             child: Assets.icons.moreCircleIcon.svg(),
           ),

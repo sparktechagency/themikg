@@ -95,7 +95,11 @@ class _MessageScreenState extends State<MessageScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextFieldWidget(hintText: "Search"),
+              TextFieldWidget(
+                hintText: "Search",
+                textInputAction: TextInputAction.search,
+                maxLine: 1,
+              ),
               SizedBox(height: 24.h),
               CustomText(text: 'Recently', fontSize: 18.sp),
               SizedBox(height: 16.h),

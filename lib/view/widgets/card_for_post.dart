@@ -7,6 +7,7 @@ import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/gen/fonts.gen.dart';
 import 'package:themikg/view/widgets/ProductImageCarouselSlider.dart';
+import 'package:themikg/view/widgets/custom_bottom_sheet.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_network_image.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
@@ -48,6 +49,7 @@ class _CardForPostState extends State<CardForPost> {
     'Block Profile',
     'Report...',
   ];
+  final List<VoidCallback> bottomSheetButtonAction = [() {}, () {}, () {}];
 
   @override
   Widget build(BuildContext context) {
@@ -92,59 +94,64 @@ class _CardForPostState extends State<CardForPost> {
               ),
               trailing: GestureDetector(
                 onTap: () {
-                  showModalBottomSheet(
+                  customBottomSheet(
                     context: context,
-                    scrollControlDisabledMaxHeightRatio: .20,
-                    builder: (context) {
-                      return CustomContainer(
-                        width: double.infinity,
-                        topLeftRadius: 24.r,
-                        topRightRadius: 24.r,
-                        color: AppColors.bgColor,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: List.generate(bottomSheetButton.length, (
-                            index,
-                          ) {
-                            return TextButton(
-                              // autofocus: true,
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors.transparent,
-                                overlayColor: AppColors.primaryColor
-                                    .withOpacity(0.2),
-
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: CustomText(
-                                text: bottomSheetButton[index],
-                                fontSize: 18.sp,
-                                // fontName: FontFamily.trajanPro,
-                                fontWeight: FontWeight.w700,
-                                color: index == 2 ? AppColors.errorColor : null,
-                              ),
-                            );
-                          }),
-                        ),
-                      );
-                    },
+                    buttons: bottomSheetButton,
+                    onPressedCallbacks: bottomSheetButtonAction,
                   );
+                  // showModalBottomSheet(
+                  //   context: context,
+                  //   scrollControlDisabledMaxHeightRatio: .20,
+                  //   builder: (context) {
+                  //     return CustomContainer(
+                  //       width: double.infinity,
+                  //       topLeftRadius: 24.r,
+                  //       topRightRadius: 24.r,
+                  //       color: AppColors.bgColor,
+                  //       child: Column(
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         children: List.generate(bottomSheetButton.length, (
+                  //           index,
+                  //         ) {
+                  //           return TextButton(
+                  //             // autofocus: true,
+                  //             style: TextButton.styleFrom(
+                  //               backgroundColor: Colors.transparent,
+                  //               overlayColor: AppColors.primaryColor
+                  //                   .withOpacity(0.2),
+                  //
+                  //               shape: RoundedRectangleBorder(
+                  //                 borderRadius: BorderRadius.circular(8.r),
+                  //               ),
+                  //             ),
+                  //             onPressed: () {},
+                  //             child: CustomText(
+                  //               text: bottomSheetButton[index],
+                  //               fontSize: 18.sp,
+                  //               // fontName: FontFamily.trajanPro,
+                  //               fontWeight: FontWeight.w700,
+                  //               color: index == 2 ? AppColors.errorColor : null,
+                  //             ),
+                  //           );
+                  //         }),
+                  //       ),
+                  //     );
+                  //   },
+                  // );
                 },
                 child: Assets.icons.moreCircleIcon.svg(),
               ),
             ),
-            ///<<<<<=====================Post section=====================>>>>
 
+            ///<<<<<=====================Post section=====================>>>>
             CustomText(
               text: widget.postTitle,
               textAlign: TextAlign.start,
               fontSize: 12.sp,
             ),
             SizedBox(height: 16.h),
-            ///<<<<<===================Post Image=====================>>>>
 
+            ///<<<<<===================Post Image=====================>>>>
             ProductImageCarouselSlider(imageUrl: widget.postImage),
             SizedBox(height: 16.h),
             Row(
@@ -180,10 +187,11 @@ class _CardForPostState extends State<CardForPost> {
                     CustomText(text: widget.likeCount.toString()),
                     SizedBox(width: 8.w),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(AppRoutes.commentScreen);
                       },
-                        child: Assets.icons.commentIcon.svg()),
+                      child: Assets.icons.commentIcon.svg(),
+                    ),
                     CustomText(text: widget.commentCount.toString()),
                   ],
                 ),

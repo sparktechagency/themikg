@@ -97,6 +97,28 @@ class _ExploreScreenState extends State<ExploreScreen>
         automaticallyImplyLeading: false,
         actions: [SizedBox.shrink()],
       ),
+      body: Padding(
+        padding: EdgeInsets.all(24.r),
+        child: Column(
+          children: [
+            _buildSearchRow(),
+            SizedBox(height: 16.h),
+            _buildTabBar(),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  UniverseContentScreen(),
+                  ProfileContentScreen(),
+                  InterestPeopleScreen(),
+                  PeopleByLocationScreen(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
       endDrawer: Drawer(
         width: MediaQuery.of(context).size.width * .7,
         backgroundColor: AppColors.bgColor,
@@ -155,8 +177,8 @@ class _ExploreScreenState extends State<ExploreScreen>
                   text: _sizeRangeValue.end > 49
                       ? 'Between ${_sizeRangeValue.start.toStringAsFixed(0)} to 50+ '
                       : (_sizeRangeValue.start < 37
-                            ? 'Between -36 to ${_sizeRangeValue.end.toStringAsFixed(0)}'
-                            : 'Between ${_sizeRangeValue.start.toStringAsFixed(0)} to ${_sizeRangeValue.end.toStringAsFixed(0)}'),
+                      ? 'Between -36 to ${_sizeRangeValue.end.toStringAsFixed(0)}'
+                      : 'Between ${_sizeRangeValue.start.toStringAsFixed(0)} to ${_sizeRangeValue.end.toStringAsFixed(0)}'),
                   fontSize: 12.sp,
                 ),
                 SizedBox(height: 8.h),
@@ -180,8 +202,8 @@ class _ExploreScreenState extends State<ExploreScreen>
                   text: _heightRangeValue.end > 174
                       ? 'Between ${_heightRangeValue.start.toStringAsFixed(0)} cm to 175+ cm'
                       : (_heightRangeValue.start < 156
-                            ? 'Between -155 cm to ${_heightRangeValue.end.toStringAsFixed(0)} cm'
-                            : 'Between ${_heightRangeValue.start.toStringAsFixed(0)} cm to ${_heightRangeValue.end.toStringAsFixed(0)} cm'),
+                      ? 'Between -155 cm to ${_heightRangeValue.end.toStringAsFixed(0)} cm'
+                      : 'Between ${_heightRangeValue.start.toStringAsFixed(0)} cm to ${_heightRangeValue.end.toStringAsFixed(0)} cm'),
                   fontSize: 12.sp,
                 ),
                 SizedBox(height: 8.h),
@@ -205,8 +227,8 @@ class _ExploreScreenState extends State<ExploreScreen>
                   text: _weightRangeValue.end > 79
                       ? 'Between ${_weightRangeValue.start.toStringAsFixed(0)}kg to 80 kg '
                       : (_weightRangeValue.start < 51
-                            ? 'Between -50 kg to ${_weightRangeValue.end.toStringAsFixed(0)} kg'
-                            : 'Between ${_weightRangeValue.start.toStringAsFixed(0)} kg to ${_weightRangeValue.end.toStringAsFixed(0)} kg'),
+                      ? 'Between -50 kg to ${_weightRangeValue.end.toStringAsFixed(0)} kg'
+                      : 'Between ${_weightRangeValue.start.toStringAsFixed(0)} kg to ${_weightRangeValue.end.toStringAsFixed(0)} kg'),
                   fontSize: 12.sp,
                 ),
 
@@ -304,29 +326,8 @@ class _ExploreScreenState extends State<ExploreScreen>
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(24.r),
-        child: Column(
-          children: [
-            _buildSearchRow(),
-            SizedBox(height: 16.h),
-            _buildTabBar(),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  UniverseContentScreen(),
-                  ProfileContentScreen(),
-                  InterestPeopleScreen(),
-                  PeopleByLocationScreen(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
     );
+
   }
 
   Row _filtersTitle(int index, String title) {
