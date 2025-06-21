@@ -22,6 +22,12 @@ import 'package:themikg/view/screens/message/inbox_message/inbox_message_screen.
 import 'package:themikg/view/screens/message/inbox_message/video_call/video_call_screen.dart';
 import 'package:themikg/view/screens/message/media/media_screen.dart';
 import 'package:themikg/view/screens/message/message_screen.dart';
+import 'package:themikg/view/screens/my_profile/my_profile_screen.dart';
+import 'package:themikg/view/screens/my_profile/settings/about_us/about_us_screen.dart';
+import 'package:themikg/view/screens/my_profile/settings/change_password/change_password_screen.dart';
+import 'package:themikg/view/screens/my_profile/settings/privacy_policy/privacy_policy_screen.dart';
+import 'package:themikg/view/screens/my_profile/settings/settings_screen.dart';
+import 'package:themikg/view/screens/my_profile/settings/terms_condition/terms_conditionScreen.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splashScreen';
@@ -46,6 +52,12 @@ class AppRoutes {
   static const String mediaScreen = '/mediaScreen';
   static const String audioCallScreen = '/audioCallScreen';
   static const String videoCallScreen = '/videoCallScreen';
+  static const String myProfileScreen = '/myProfileScreen';
+  static const String settingsScreen = '/settingsScreen';
+  static const String changePasswordScreen = '/changePasswordScreen';
+  static const String termsConditionScreen = '/termsConditionScreen';
+  static const String privacyPolicyScreen = '/privacyPolicyScreen';
+  static const String aboutUsScreen = '/aboutUsScreen';
 
 
   static List<GetPage> get routes => [
@@ -71,5 +83,11 @@ class AppRoutes {
     GetPage(name: mediaScreen, page: () => MediaScreen()),
     GetPage(name: audioCallScreen, page: () => AudioCallScreen()),
     GetPage(name: videoCallScreen, page: () => VideoCallScreen()),
+    GetPage(name: myProfileScreen, page: () => MyProfileScreen()),
+    GetPage(name: settingsScreen, page: () => SettingsScreen()),
+    GetPage(name: changePasswordScreen, page: () => ChangePasswordScreen()),
+    GetPage(name: privacyPolicyScreen, page: () => PrivacyPolicyScreen()),
+    GetPage(name: termsConditionScreen, page: () => TermsConditionScreen()),
+    GetPage(name: aboutUsScreen, page: () => AboutUsScreen()),
   ];
 }

@@ -6,6 +6,7 @@ import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/view/screens/explore/explore_screen.dart';
 import 'package:themikg/view/screens/home/home_screen.dart';
 import 'package:themikg/view/screens/message/message_screen.dart';
+import 'package:themikg/view/screens/my_profile/my_profile_screen.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 
@@ -24,7 +25,8 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     Center(child: CustomText(text: 'Add Page')),
     // Center(child: CustomText(text: 'Message Page')),
     MessageScreen(),
-    Center(child: CustomText(text: 'Profile Page')),
+    // Center(child: CustomText(text: 'Profile Page')),
+    MyProfileScreen()
   ];
 
   @override

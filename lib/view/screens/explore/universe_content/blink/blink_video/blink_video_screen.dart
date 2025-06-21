@@ -280,21 +280,21 @@ class _ReelsScreenState extends State<ReelsScreen> {
                             ],
                           ),
                           SizedBox(height: 32.h),
-                          Row(
-                            children: [
-                              CustomNetworkImage(
-                                imageUrl: "https://picsum.photos/200/300",
-                                height: 25.h,
-                                width: 25.w,
-                                boxShape: BoxShape.circle,
-                              ),
-                              CustomText(text: 'Favorite by '),
-                              CustomText(
-                                text: 'Justin Bieber',
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   children: [
+                          //     CustomNetworkImage(
+                          //       imageUrl: "https://picsum.photos/200/300",
+                          //       height: 25.h,
+                          //       width: 25.w,
+                          //       boxShape: BoxShape.circle,
+                          //     ),
+                          //     CustomText(text: 'Favorite by '),
+                          //     CustomText(
+                          //       text: 'Justin Bieber',
+                          //       fontWeight: FontWeight.w700,
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),

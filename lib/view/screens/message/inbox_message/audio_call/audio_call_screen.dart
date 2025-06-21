@@ -19,13 +19,11 @@ class AudioCallScreen extends StatefulWidget {
 class _AudioCallScreenState extends State<AudioCallScreen> {
   final List<IconData> audioCallIcons = [
     Icons.mic_none_rounded,
-    Icons.videocam,
     Icons.volume_up,
     Icons.close,
   ];
   final List<IconData> audioCallCloseIcon = [
     Icons.mic_off_rounded,
-    Icons.videocam_off,
     Icons.volume_off,
     Icons.close,
   ];
@@ -76,59 +74,62 @@ class _AudioCallScreenState extends State<AudioCallScreen> {
               ),
             ),
             showAudioControl
-                ?Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: CustomContainer(
-                alignment: Alignment.topCenter,
-                topRightRadius: 16.r,
-                topLeftRadius: 16.r,
-                height: 150.h,
-                linearColors: [Color(0xff282828), Color(0xFF0E0E0E)],
-                color: AppColors.borderColor,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: 16.r,
-                    right: 16.r,
-                    top: 32.h,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(audioCallIcons.length, (index) {
-                      return CustomContainer(
-                        onTap: () {
-                          setState(() {
-                            isTapped[index] = !isTapped[index];
-                          });
-                          if (index == 3) {
-                            Get.back();
-                          }
-                        },
-                        alignment: Alignment.center,
-                        height: 57.h,
-                        width: 57.w,
-                        shape: BoxShape.circle,
-                        color: index == 3
-                            ? AppColors.greyColor
-                            : AppColors.primaryColor,
-                        child: Icon(
-                          isTapped[index]
-                              ? audioCallCloseIcon[index]
-                              : audioCallIcons[index],
-                          size: 30.h,
-                          color: Colors.white,
+                ? Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: CustomContainer(
+                      alignment: Alignment.topCenter,
+                      topRightRadius: 16.r,
+                      topLeftRadius: 16.r,
+                      height: 150.h,
+                      linearColors: [Color(0xff282828), Color(0xFF0E0E0E)],
+                      color: AppColors.borderColor,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: 16.r,
+                          right: 16.r,
+                          top: 32.h,
                         ),
-                      );
-                    }),
-                  ),
-                ),
-              ),
-            ): Positioned(
-              left: 0,
-              bottom: 0,
-              right: 0,
-              child: Column(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: List.generate(audioCallIcons.length, (
+                            index,
+                          ) {
+                            return CustomContainer(
+                              onTap: () {
+                                setState(() {
+                                  isTapped[index] = !isTapped[index];
+                                });
+                                if (index == 2) {
+                                  Get.back();
+                                }
+                              },
+                              alignment: Alignment.center,
+                              height: 57.h,
+                              width: 57.w,
+                              shape: BoxShape.circle,
+                              color: index == 2
+                                  ? AppColors.greyColor
+                                  : AppColors.primaryColor,
+                              child: Icon(
+                                isTapped[index]
+                                    ? audioCallCloseIcon[index]
+                                    : audioCallIcons[index],
+                                size: 30.h,
+                                color: Colors.white,
+                              ),
+                            );
+                          }),
+                        ),
+                      ),
+                    ),
+                  )
+                : Positioned(
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    child: Column(
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 40.w),
@@ -153,7 +154,7 @@ class _AudioCallScreenState extends State<AudioCallScreen> {
                               CustomContainer(
                                 onTap: () {
                                   setState(() {
-                                    showAudioControl=true;
+                                    showAudioControl = true;
                                   });
                                 },
                                 alignment: Alignment.center,
@@ -173,7 +174,7 @@ class _AudioCallScreenState extends State<AudioCallScreen> {
                         SizedBox(height: 24.h),
                       ],
                     ),
-            )
+                  ),
           ],
         ),
       ),

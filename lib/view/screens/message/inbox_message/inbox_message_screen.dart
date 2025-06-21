@@ -8,6 +8,7 @@ import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/gen/fonts.gen.dart';
 import 'package:themikg/view/widgets/custom_bottom_sheet.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
+import 'package:themikg/view/widgets/custom_dialog.dart';
 import 'package:themikg/view/widgets/custom_global_app_bar.dart';
 import 'package:themikg/view/widgets/custom_network_image.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
@@ -44,14 +45,29 @@ class _InboxMessageScreenState extends State<InboxMessageScreen> {
     'Media',
     'Block Profile',
   ];
-  final List<VoidCallback> bottomSheetButtonAction = [
-    () {},
-    () {
-      ///for button 2 action
-      Get.toNamed(AppRoutes.mediaScreen);
-    },
-    () {},
-  ];
+
+  List<VoidCallback> bottomSheetButtonAction(BuildContext context) {
+    return [
+      () {},
+      () {
+        ///for button 2 action
+        Get.toNamed(AppRoutes.mediaScreen);
+      },
+      () {
+        _showDialog(context);
+      },
+    ];
+  }
+
+  void _showDialog(BuildContext context) {
+    customPopUpWidget(
+      context: context,
+      title: "Block",
+      subtitle: 'Are you sure want to block this user?',
+      firstButton: 'Cancel',
+      lastButton: 'Block',
+    );
+  }
 
   void sendMessage() {
     if (_controller.text.trim().isEmpty) return;
@@ -90,13 +106,13 @@ class _InboxMessageScreenState extends State<InboxMessageScreen> {
             },
             icon: Icon(CupertinoIcons.video_camera, size: 32.h),
           ),
-          SizedBox(width: 8 .w),
+          SizedBox(width: 8.w),
           GestureDetector(
             onTap: () {
               customBottomSheet(
                 context: context,
                 buttons: bottomSheetButton,
-                onPressedCallbacks: bottomSheetButtonAction,
+                onPressedCallbacks: bottomSheetButtonAction(context),
               );
             },
             child: Assets.icons.moreCircleIcon.svg(),
@@ -132,7 +148,10 @@ class _InboxMessageScreenState extends State<InboxMessageScreen> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 16.r),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.r,
+                    vertical: 16.r,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     // Align to the bottom

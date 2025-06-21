@@ -19,6 +19,10 @@ class $AssetsIconsGen {
   SvgGenImage get inboxMessageIcon =>
       const SvgGenImage('assets/icons/InboxMessageIcon.svg');
 
+  /// File path: assets/icons/aboutUsIcon.svg
+  SvgGenImage get aboutUsIcon =>
+      const SvgGenImage('assets/icons/aboutUsIcon.svg');
+
   /// File path: assets/icons/addIcon.svg
   SvgGenImage get addIcon => const SvgGenImage('assets/icons/addIcon.svg');
 
@@ -28,6 +32,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/blinkIcon.svg
   SvgGenImage get blinkIcon => const SvgGenImage('assets/icons/blinkIcon.svg');
+
+  /// File path: assets/icons/changePasswordIcon.svg
+  SvgGenImage get changePasswordIcon =>
+      const SvgGenImage('assets/icons/changePasswordIcon.svg');
 
   /// File path: assets/icons/commentIcon.svg
   SvgGenImage get commentIcon =>
@@ -104,6 +112,10 @@ class $AssetsIconsGen {
   SvgGenImage get passwordIcon =>
       const SvgGenImage('assets/icons/passwordIcon.svg');
 
+  /// File path: assets/icons/privacyIcon.svg
+  SvgGenImage get privacyIcon =>
+      const SvgGenImage('assets/icons/privacyIcon.svg');
+
   /// File path: assets/icons/reactIcon1.svg
   SvgGenImage get reactIcon1 =>
       const SvgGenImage('assets/icons/reactIcon1.svg');
@@ -131,6 +143,14 @@ class $AssetsIconsGen {
   SvgGenImage get sendMessageIcon =>
       const SvgGenImage('assets/icons/sendMessageIcon.svg');
 
+  /// File path: assets/icons/stellaIcon.svg
+  SvgGenImage get stellaIcon =>
+      const SvgGenImage('assets/icons/stellaIcon.svg');
+
+  /// File path: assets/icons/termsAndConditionIcon.svg
+  SvgGenImage get termsAndConditionIcon =>
+      const SvgGenImage('assets/icons/termsAndConditionIcon.svg');
+
   /// File path: assets/icons/universeExploreIcon.svg
   SvgGenImage get universeExploreIcon =>
       const SvgGenImage('assets/icons/universeExploreIcon.svg');
@@ -142,9 +162,11 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
     inboxMessageIcon,
+    aboutUsIcon,
     addIcon,
     alertDialogImage,
     blinkIcon,
+    changePasswordIcon,
     commentIcon,
     emailIcon,
     exploreIcon,
@@ -165,6 +187,7 @@ class $AssetsIconsGen {
     notificationIcon,
     orbitIcon,
     passwordIcon,
+    privacyIcon,
     reactIcon1,
     reactIcon2,
     reactIcon3,
@@ -172,6 +195,8 @@ class $AssetsIconsGen {
     searchIcon,
     searchPeopleIcon,
     sendMessageIcon,
+    stellaIcon,
+    termsAndConditionIcon,
     universeExploreIcon,
     universeExploreIconActive,
   ];

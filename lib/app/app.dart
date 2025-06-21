@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: 'Themikg',
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
-          initialRoute: AppRoutes.splashScreen,
+          // home: SplashScreen(),
+          initialRoute: AppRoutes.bottomNavBarScreen,
           getPages: AppRoutes.routes,
           themeMode: ThemeMode.dark,
           // theme: ThemeData.dark(useMaterial3: true),
