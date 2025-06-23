@@ -13,8 +13,6 @@ import 'package:themikg/view/widgets/custom_network_image.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 import 'package:video_player/video_player.dart';
 
-import 'blink_video_screen.dart' as _videoPlayerController;
-
 class ReelsScreen extends StatefulWidget {
   const ReelsScreen({super.key});
 

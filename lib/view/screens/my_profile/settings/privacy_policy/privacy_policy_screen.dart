@@ -23,12 +23,14 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
         ),
         centerTitle: false,
       ),
-      body: Padding(
-        padding:  EdgeInsets.all(24.r),
-        child: CustomText(
-          textAlign: TextAlign.start,
-          text: '''
-      Welcome to Shower Share!
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(24.r),
+            child: CustomText(
+              textAlign: TextAlign.start,
+              text: '''
+Welcome to Shower Share!
 These Terms and Conditions ("Terms") govern your use of the Shower Share mobile application ("App") and the services offered through it. By accessing or using the App, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the App.
 1. Acceptance of Terms
 By downloading, installing, or using the Shower Share App, you agree to these Terms, including any future modifications. We reserve the right to update or change these Terms at any time, and your continued use of the App after any changes will constitute your acceptance of the updated Terms.
@@ -41,6 +43,8 @@ To use the App, you must be at least [insert age requirement] years old or the l
 Account Creation: To access certain features, you may be required to create an account. When you create an account, you agree to provide accurate, current, and complete information and to update it as necessary.
 Account Security: You are responsible for maintaining the confidentiality of your account login credentials and for all activities that occur under your account. Notify us immediately if you suspect any unauthorized use of your account.
       ''',
+            ),
+          ),
         ),
       ),
     );

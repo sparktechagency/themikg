@@ -9,6 +9,7 @@ import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/gen/fonts.gen.dart';
 import 'package:themikg/view/widgets/custom_button.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
+import 'package:themikg/view/widgets/custom_dialog.dart';
 import 'package:themikg/view/widgets/custom_global_app_bar.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 
@@ -89,7 +90,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Spacer(),
               CustomButton(
                 backgroundColor: Colors.transparent,
-                onPressed: () {},
+                onPressed: () {
+                  customPopUpWidget(
+                    context: context,
+                    title: "Delete Account",
+                    subtitle: "Do you want to delete your account?",
+                    firstButton: "Cancel",
+                    lastButton: 'Delete',
+                    onPressedFirstButton: (){},
+                    onPressedLastButton: (){
+                      Get.offAllNamed(AppRoutes.signUpScreen);
+                    },
+                  );
+                },
                 prefixIcon: Icon(
                   CupertinoIcons.delete_solid,
                   color: AppColors.errorColor,

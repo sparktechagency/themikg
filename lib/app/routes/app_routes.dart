@@ -22,12 +22,14 @@ import 'package:themikg/view/screens/message/inbox_message/inbox_message_screen.
 import 'package:themikg/view/screens/message/inbox_message/video_call/video_call_screen.dart';
 import 'package:themikg/view/screens/message/media/media_screen.dart';
 import 'package:themikg/view/screens/message/message_screen.dart';
+import 'package:themikg/view/screens/my_profile/edit_profile/edit_profile_screen.dart';
 import 'package:themikg/view/screens/my_profile/my_profile_screen.dart';
 import 'package:themikg/view/screens/my_profile/settings/about_us/about_us_screen.dart';
 import 'package:themikg/view/screens/my_profile/settings/change_password/change_password_screen.dart';
 import 'package:themikg/view/screens/my_profile/settings/privacy_policy/privacy_policy_screen.dart';
 import 'package:themikg/view/screens/my_profile/settings/settings_screen.dart';
 import 'package:themikg/view/screens/my_profile/settings/terms_condition/terms_conditionScreen.dart';
+import 'package:themikg/view/screens/my_profile/vault/vault_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splashScreen';
@@ -58,6 +60,8 @@ class AppRoutes {
   static const String termsConditionScreen = '/termsConditionScreen';
   static const String privacyPolicyScreen = '/privacyPolicyScreen';
   static const String aboutUsScreen = '/aboutUsScreen';
+  static const String vaultScreen = '/vaultScreen';
+  static const String editProfileScreen = '/editProfileScreen';
 
 
   static List<GetPage> get routes => [
@@ -89,5 +93,7 @@ class AppRoutes {
     GetPage(name: privacyPolicyScreen, page: () => PrivacyPolicyScreen()),
     GetPage(name: termsConditionScreen, page: () => TermsConditionScreen()),
     GetPage(name: aboutUsScreen, page: () => AboutUsScreen()),
+    GetPage(name: vaultScreen, page: () => VaultScreen()),
+    GetPage(name: editProfileScreen, page: () => EditProfileScreen()),
   ];
 }

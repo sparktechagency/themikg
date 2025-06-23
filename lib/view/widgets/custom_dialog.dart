@@ -13,6 +13,7 @@ Future<bool?> customPopUpWidget({
   Color? titleColor,
   String? firstButton,
   String? lastButton,
+  Color? latButtonBgColor,
   void Function()? onPressedFirstButton,
   void Function()? onPressedLastButton,
 }) async {
@@ -24,6 +25,7 @@ Future<bool?> customPopUpWidget({
         actionsAlignment: MainAxisAlignment.spaceEvenly,
         alignment: Alignment.center,
         backgroundColor: AppColors.bgColor,
+
         title: CustomText(
           text: title,
           fontSize: 24.sp,
@@ -45,6 +47,7 @@ Future<bool?> customPopUpWidget({
             height: 40.h,
             width: 100.w,
             radius: 8.r,
+            backgroundColor: AppColors.postCardColor,
           ),
           CustomButton(
             onPressed: () {
@@ -54,7 +57,7 @@ Future<bool?> customPopUpWidget({
             label: lastButton,
             height: 40.h,
             width: 100.w,
-            backgroundColor: AppColors.errorColor,
+            backgroundColor:latButtonBgColor??AppColors.errorColor,
             radius: 8.r,
           ),
         ],

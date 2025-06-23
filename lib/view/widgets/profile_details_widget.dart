@@ -17,6 +17,7 @@ class ProfileDetailsWidget extends StatelessWidget {
     this.size,
     this.bio,
     this.isEditIconShowing = false,
+    this.onTapEdit,
   });
 
   final String profileImage;
@@ -27,6 +28,7 @@ class ProfileDetailsWidget extends StatelessWidget {
   final List<String> interestList;
   final bool isEditIconShowing;
   final String? bio;
+  final Function()? onTapEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -46,18 +48,21 @@ class ProfileDetailsWidget extends StatelessWidget {
                   border: Border.all(color: AppColors.primaryColor, width: 2),
                 ),
                 isEditIconShowing
-                    ? CustomContainer(
-                  alignment: Alignment.center,
-                  height: 30.h,
-                  width: 30.w,
-                  color: AppColors.primaryColor,
-                  radiusAll: 8.r,
-                  child: Icon(
-                    Icons.edit,
-                    color: AppColors.bgColor,
-                    weight: 100,
-                  ),
-                )
+                    ? GestureDetector(
+                        onTap: onTapEdit,
+                        child: CustomContainer(
+                          alignment: Alignment.center,
+                          height: 30.h,
+                          width: 30.w,
+                          color: AppColors.primaryColor,
+                          radiusAll: 8.r,
+                          child: Icon(
+                            Icons.edit,
+                            color: AppColors.bgColor,
+                            weight: 100,
+                          ),
+                        ),
+                      )
                     : SizedBox.shrink(),
               ],
             ),
@@ -73,9 +78,9 @@ class ProfileDetailsWidget extends StatelessWidget {
                 SizedBox(height: 8.h),
                 CustomText(text: name, fontSize: 16.sp),
                 SizedBox(height: 4.h),
-                CustomText(text: location??'', fontSize: 12.sp),
+                CustomText(text: location ?? '', fontSize: 12.sp),
                 SizedBox(height: 4.h),
-                CustomText(text:"Size: $size", fontSize: 12.sp),
+                CustomText(text: "Size: $size", fontSize: 12.sp),
                 // SizedBox(height: 4.h,),
                 Row(
                   children: List.generate(interestList.length, (index) {
@@ -103,8 +108,7 @@ class ProfileDetailsWidget extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         CustomText(
-          text:
-          bio??'',
+          text: bio ?? '',
           fontSize: 12.sp,
           color: AppColors.greyColor,
         ),

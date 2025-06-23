@@ -8,6 +8,7 @@ import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/gen/fonts.gen.dart';
 import 'package:themikg/view/widgets/custom_bottom_sheet.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
+import 'package:themikg/view/widgets/custom_dialog.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 import 'package:themikg/view/widgets/profile_details_widget.dart';
 
@@ -57,8 +58,22 @@ class _MyProfileScreenState extends State<MyProfileScreen>
                   () {
                     Get.toNamed(AppRoutes.settingsScreen);
                   },
-                  () {},
-                  () {},
+                  () {
+                    Get.toNamed(AppRoutes.vaultScreen);
+                  },
+                  () {
+                    customPopUpWidget(
+                      context: context,
+                      title: 'Log Out',
+                      subtitle: "Do you want to log out your profile?",
+                      firstButton: 'Cancel',
+                      lastButton: 'Log Out',
+                      latButtonBgColor: AppColors.primaryColor,
+                      onPressedLastButton: () {
+                        Get.offAllNamed(AppRoutes.signInScreen);
+                      },
+                    );
+                  },
                 ],
                 prefixIcons: [
                   Icon(Icons.settings, color: Colors.white),
@@ -79,6 +94,9 @@ class _MyProfileScreenState extends State<MyProfileScreen>
             ProfileDetailsWidget(
               interestList: interestList,
               isEditIconShowing: true,
+              onTapEdit: (){
+                Get.toNamed(AppRoutes.editProfileScreen);
+              },
               profileImage: 'https://i.pravatar.cc/150?img=31',
               name: 'Rakibul Islam Khan',
               userName: 'rk_190',

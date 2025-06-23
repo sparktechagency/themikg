@@ -66,7 +66,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 prefixIcon: Icon(Icons.lock,color: Colors.white,),
               ),
               Spacer(),
-              CustomButton(onPressed: (){},label: 'Update',)
+              CustomButton(onPressed: (){},label: 'Update',fontWeight: FontWeight.w700,fontSize: 20.sp,)
             ],
           ),
         ),
