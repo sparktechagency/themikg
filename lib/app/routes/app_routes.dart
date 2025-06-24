@@ -23,13 +23,22 @@ import 'package:themikg/view/screens/message/inbox_message/video_call/video_call
 import 'package:themikg/view/screens/message/media/media_screen.dart';
 import 'package:themikg/view/screens/message/message_screen.dart';
 import 'package:themikg/view/screens/my_profile/edit_profile/edit_profile_screen.dart';
+import 'package:themikg/view/screens/my_profile/edit_profile/your_curiosity/your_curiosity_screen.dart';
+import 'package:themikg/view/screens/my_profile/my_blink/my_blink_screen.dart';
+import 'package:themikg/view/screens/my_profile/my_orbit/my_orbit_screen.dart';
 import 'package:themikg/view/screens/my_profile/my_profile_screen.dart';
+import 'package:themikg/view/screens/my_profile/my_stellar/my_stellar_screen.dart';
 import 'package:themikg/view/screens/my_profile/settings/about_us/about_us_screen.dart';
 import 'package:themikg/view/screens/my_profile/settings/change_password/change_password_screen.dart';
 import 'package:themikg/view/screens/my_profile/settings/privacy_policy/privacy_policy_screen.dart';
 import 'package:themikg/view/screens/my_profile/settings/settings_screen.dart';
 import 'package:themikg/view/screens/my_profile/settings/terms_condition/terms_conditionScreen.dart';
 import 'package:themikg/view/screens/my_profile/vault/vault_screen.dart';
+import 'package:themikg/view/screens/my_profile/wallet/wallet_screen.dart';
+import 'package:themikg/view/screens/report/report_screen.dart';
+import 'package:themikg/view/screens/user_profile/user_profile_screen.dart';
+
+import '../../view/screens/report/submit_report/submit_report_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splashScreen';
@@ -62,6 +71,14 @@ class AppRoutes {
   static const String aboutUsScreen = '/aboutUsScreen';
   static const String vaultScreen = '/vaultScreen';
   static const String editProfileScreen = '/editProfileScreen';
+  static const String walletScreen = '/walletScreen';
+  static const String myOrbitScreen = '/myOrbitScreen';
+  static const String myBlinkScreen = '/myBlinkScreen';
+  static const String myStellarScreen = '/myStellarScreen';
+  static const String reportScreen = '/reportScreen';
+  static const String reportSubmitScreen = '/reportSubmitScreen';
+  static const String userProfileScreen = '/userProfileScreen';
+  static const String yourCuriosityScreen = '/yourCuriosityScreen';
 
 
   static List<GetPage> get routes => [
@@ -95,5 +112,13 @@ class AppRoutes {
     GetPage(name: aboutUsScreen, page: () => AboutUsScreen()),
     GetPage(name: vaultScreen, page: () => VaultScreen()),
     GetPage(name: editProfileScreen, page: () => EditProfileScreen()),
+    GetPage(name: walletScreen, page: () => WalletScreen()),
+    GetPage(name: myOrbitScreen, page: () => MyOrbitScreen()),
+    GetPage(name: myBlinkScreen, page: () => MyBlinkScreen()),
+    GetPage(name: myStellarScreen, page: () => MyStellarScreen()),
+    GetPage(name: reportScreen, page: () => ReportScreen()),
+    GetPage(name: reportSubmitScreen, page: () => SubmitReportScreen()),
+    GetPage(name: userProfileScreen, page: () => UserProfileScreen()),
+    GetPage(name: yourCuriosityScreen, page: () => YourCuriosityScreen()),
   ];
 }

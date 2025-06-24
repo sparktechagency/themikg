@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,94 +6,102 @@ import 'package:get/get.dart';
 import 'package:themikg/app/routes/app_routes.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
-import 'package:themikg/gen/fonts.gen.dart';
 import 'package:themikg/view/screens/my_profile/my_blink/my_blink_screen.dart';
 import 'package:themikg/view/screens/my_profile/my_orbit/my_orbit_screen.dart';
+import 'package:themikg/view/screens/my_profile/my_profile_screen.dart';
 import 'package:themikg/view/screens/my_profile/my_stellar/my_stellar_screen.dart';
+import 'package:themikg/view/screens/user_profile/user_stellar/user_stellar_screen.dart';
 import 'package:themikg/view/widgets/custom_bottom_sheet.dart';
-import 'package:themikg/view/widgets/custom_container.dart';
+import 'package:themikg/view/widgets/custom_button.dart';
 import 'package:themikg/view/widgets/custom_dialog.dart';
+import 'package:themikg/view/widgets/custom_global_app_bar.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 import 'package:themikg/view/widgets/profile_details_widget.dart';
 
-class MyProfileScreen extends StatefulWidget {
-  const MyProfileScreen({super.key});
+class UserProfileScreen extends StatefulWidget {
+  const UserProfileScreen({super.key});
 
   @override
-  State<MyProfileScreen> createState() => _MyProfileScreenState();
+  State<UserProfileScreen> createState() => _UserProfileScreenState();
 }
 
-class _MyProfileScreenState extends State<MyProfileScreen>
+class _UserProfileScreenState extends State<UserProfileScreen>
     with SingleTickerProviderStateMixin {
-  final List<String> interestList = ['Travelling', 'Movie', 'Game'];
   TabController? _tabController;
+  final List<String> interestList = ['Sleeping', 'Cycling', 'Reading'];
+  bool isLinked = false;
   final List<Map<String, dynamic>> profileIconList = [
     {'icon': Assets.icons.orbitIcon.path, 'name': "Orbit"},
     {'icon': Assets.icons.blinkIcon.path, 'name': 'Blink'},
     {'icon': Assets.icons.stellaIcon.path, 'name': 'Stellar'},
   ];
-  final List<Map<String, dynamic>> bottomSheetButton = [
-    {'icon': Icon(Icons.settings), 'name': 'Settings'},
-    {'icon': Assets.icons.saveIcon.svg(), 'name': 'Vault'},
-    {'icon': Icon(Icons.logout_rounded), 'name': 'Log Out'},
-  ];
 
   @override
   void initState() {
     super.initState();
-    // Initialize the TabController with the length of your tab list
     _tabController = TabController(length: profileIconList.length, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController?.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: CustomText(text: 'shofiq_190', fontSize: 20.sp),
+      appBar: CustomGlobalAppBar(
+        title: 'julila_ad23',
+        centerTitle: false,
         actions: [
-          GestureDetector(
-            onTap: () {
-              Get.toNamed(AppRoutes.walletScreen);
-            },
-            child: Icon(Icons.wallet_outlined, color: Colors.white, size: 35.h),
-          ),
-          SizedBox(width: 40.w),
           GestureDetector(
             onTap: () {
               customBottomSheet(
                 context: context,
-                buttons: ['Settings', 'Vault', 'Log Out'],
+                buttons: [
+                  "Copy Profile URL",
+                  "Share this Profile",
+                  "Block",
+                  'Report',
+                ],
+                prefixIcons: [
+                  Icon(Icons.copy, color: Colors.white),
+                  Icon(Icons.rocket, color: Colors.white),
+                  Icon(Icons.block, color: AppColors.errorColor),
+                  Icon(
+                    Icons.warning_amber_outlined,
+                    color: AppColors.errorColor,
+                  ),
+                ],
                 onPressedCallbacks: [
-                  () {
-                    Get.toNamed(AppRoutes.settingsScreen);
-                  },
-                  () {
-                    Get.toNamed(AppRoutes.vaultScreen);
-                  },
+                  () {},
+                  () {},
                   () {
                     customPopUpWidget(
                       context: context,
-                      title: 'Log Out',
-                      subtitle: "Do you want to log out your profile?",
+                      title: 'Block',
+                      subtitle: "Are you sure you want to block this user?",
                       firstButton: 'Cancel',
-                      lastButton: 'Log Out',
-                      latButtonBgColor: AppColors.primaryColor,
-                      onPressedLastButton: () {
-                        Get.offAllNamed(AppRoutes.signInScreen);
-                      },
+                      lastButton: 'Block',
                     );
                   },
+                  () {
+                    Get.toNamed(AppRoutes.reportScreen);
+                  },
                 ],
-                prefixIcons: [
-                  Icon(Icons.settings, color: Colors.white),
-                  Assets.icons.saveIcon.svg(),
-                  Icon(Icons.logout_rounded, color: Colors.white),
+                // buttonColor: Colors.white,
+                buttonColors: [
+                  Colors.white,
+                  Colors.white,
+                  Colors.white,
+                  AppColors.errorColor,
                 ],
               );
             },
             child: Assets.icons.moreCircleIcon.svg(height: 30.h, width: 30.w),
           ),
-          SizedBox(width: 16.w),
+          SizedBox(width: 8.w),
         ],
       ),
       body: Padding(
@@ -105,11 +114,11 @@ class _MyProfileScreenState extends State<MyProfileScreen>
               onTapEdit: () {
                 Get.toNamed(AppRoutes.editProfileScreen);
               },
-              profileImage: 'https://i.pravatar.cc/150?img=31',
-              name: 'Rakibul Islam Khan',
-              userName: 'rk_190',
-              location: 'Banasree, Dhaka, Bangladesh',
-              size: '38',
+              profileImage: 'https://i.pravatar.cc/150?img=29',
+              name: 'Julian Marker',
+              userName: 'julila_ad23',
+              location: 'New jersey, New York, USA',
+              size: '40',
               bio:
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
             ),
@@ -117,13 +126,56 @@ class _MyProfileScreenState extends State<MyProfileScreen>
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ProfileFollowerCount(count: 134, countName: 'Likes'),
+                ProfileFollowerCount(count: 432, countName: 'Likes'),
                 DividerWidget(),
-                ProfileFollowerCount(count: 435, countName: 'Linked by'),
+                ProfileFollowerCount(count: 1002, countName: 'Linked by'),
                 DividerWidget(),
-                ProfileFollowerCount(count: 121, countName: 'Linked'),
+                ProfileFollowerCount(count: 3438, countName: 'Linked'),
               ],
             ),
+            SizedBox(height: 24.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CustomButton(
+                  onPressed: () {
+                    setState(() {
+                      isLinked = !isLinked;
+                    });
+                  },
+                  label: isLinked ? "Linked" : 'Link',
+                  height: 38.h,
+                  width: 132.w,
+                  radius: 16.r,
+                  prefixIcon: Icon(
+                    Icons.person_add_alt_1_rounded,
+                    color: Colors.white,
+                    size: 20.h,
+                  ),
+                  fontSize: 16.sp,
+                ),
+                CustomButton(
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.inboxMessageScreen);
+                  },
+                  label: 'Message',
+                  height: 38.h,
+                  width: 132.w,
+                  foregroundColor: AppColors.primaryColor,
+                  radius: 16.r,
+
+                  backgroundColor: Colors.transparent,
+                  bordersColor: AppColors.primaryColor,
+                  prefixIcon: Icon(
+                    CupertinoIcons.chat_bubble_text,
+                    color: AppColors.primaryColor,
+                    size: 20.h,
+                  ),
+                  fontSize: 16.sp,
+                ),
+              ],
+            ),
+
             TabBar(
               // enableFeedback: false,
               // physics: NeverScrollableScrollPhysics(),
@@ -172,51 +224,13 @@ class _MyProfileScreenState extends State<MyProfileScreen>
                 children: [
                   MyOrbitScreen(),
                   MyBlinkScreen(),
-                  MyStellarScreen(),
+                  UserStellarScreen(),
                 ],
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class DividerWidget extends StatelessWidget {
-  const DividerWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomContainer(height: 46.h, width: 2.w, color: Colors.white);
-  }
-}
-
-class ProfileFollowerCount extends StatelessWidget {
-  const ProfileFollowerCount({
-    super.key,
-    required this.count,
-    required this.countName,
-  });
-
-  final int count;
-  final String countName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomText(
-          text: count.toString(),
-          fontSize: 18.sp,
-          fontName: FontFamily.trajanPro,
-        ),
-        CustomText(
-          text: countName,
-          color: AppColors.borderColor,
-          fontSize: 16.sp,
-        ),
-      ],
     );
   }
 }

@@ -13,6 +13,7 @@ import 'package:themikg/view/widgets/ProductImageCarouselSlider.dart';
 import 'package:themikg/view/widgets/card_for_post.dart';
 import 'package:themikg/view/widgets/circle_profile_for_story.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
+import 'package:themikg/view/widgets/custom_dialog.dart';
 import 'package:themikg/view/widgets/custom_global_app_bar.dart';
 import 'package:themikg/view/widgets/custom_network_image.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
@@ -121,6 +122,24 @@ class _HomeScreenState extends State<HomeScreen> {
               postTitle: _postList[index].postTitle ?? '',
               likeCount: _postList[index].likeCount,
               commentCount: _postList[index].commentCount,
+              bottomSheetButtonAction: [
+                () {
+                  Get.toNamed(AppRoutes.userProfileScreen);
+                },
+                () {
+                  customPopUpWidget(
+                    context: context,
+                    title: 'Block',
+                    subtitle: "Are you sure you want to block this user?",
+                    firstButton: 'Cancel',
+                    lastButton: 'Block',
+                  );
+                },
+                () {
+                  Get.toNamed(AppRoutes.reportScreen);
+                },
+              ],
+              bottomSheetButton: ['View Profile', 'Block Profile', 'Report...'],
             ),
           );
         },

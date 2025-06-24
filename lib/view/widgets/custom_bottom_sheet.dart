@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:themikg/app/utils/app_color.dart';
-import 'package:themikg/view/widgets/custom_button.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 
@@ -11,11 +10,11 @@ void customBottomSheet({
   required List<VoidCallback> onPressedCallbacks,
   Color buttonColor = AppColors.primaryColor,
   List<Widget>? prefixIcons,
+  List<Color>? buttonColors, // New parameter for custom button colors
 }) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
-    // Allow the bottom sheet to adjust height based on its content
     builder: (context) {
       return SafeArea(
         child: CustomContainer(
@@ -25,7 +24,6 @@ void customBottomSheet({
           color: AppColors.bgColor,
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 8.h),
-            // Add vertical padding for better spacing
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -40,16 +38,18 @@ void customBottomSheet({
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
-                  // Let the column take the minimum height based on content
                   children: List.generate(buttons.length, (index) {
+                    // Determine the button color
+                    Color currentButtonColor =
+                        buttonColors?[index] ??
+                        (index == 2 ? AppColors.errorColor : buttonColor);
+
                     return Padding(
                       padding: EdgeInsets.only(left: 16.w, bottom: 4.h),
-                      //Adjust bottom padding for space between buttons
                       child: TextButton(
-                        // clipBehavior: Clip.,
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.transparent,
-                          overlayColor: buttonColor.withOpacity(0.2),
+                          overlayColor: currentButtonColor.withOpacity(0.2),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.r),
                           ),
@@ -63,12 +63,14 @@ void customBottomSheet({
                               prefixIcons?.isNotEmpty == true
                                   ? prefixIcons![index]
                                   : SizedBox.shrink(),
-                              prefixIcons?.isNotEmpty == true? SizedBox(width: 16.w,):SizedBox.shrink(),
+                              prefixIcons?.isNotEmpty == true
+                                  ? SizedBox(width: 16.w)
+                                  : SizedBox.shrink(),
                               CustomText(
                                 text: buttons[index],
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.w700,
-                                color: index == 2 ? AppColors.errorColor : null,
+                                color: index == 2 ||index ==3 ? AppColors.errorColor : null,
                               ),
                             ],
                           ),

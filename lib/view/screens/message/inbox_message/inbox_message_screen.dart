@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +8,7 @@ import 'package:themikg/app/routes/app_routes.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
 import 'package:themikg/gen/fonts.gen.dart';
+import 'package:themikg/helper/image_picker_helper.dart';
 import 'package:themikg/view/widgets/custom_bottom_sheet.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_dialog.dart';
@@ -26,19 +29,29 @@ class _InboxMessageScreenState extends State<InboxMessageScreen> {
   final TextEditingController _messageTextController = TextEditingController();
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  final ImagePickerHelper _imagePickerHelper = ImagePickerHelper();
+  File? _image;
   final List<Map<String, dynamic>> messages = [
     {
       "text":
           "Hey there! Haven't seen long day . where are you? can we meet in this sunday . i'm planning about to host a dinner with you",
       "isMe": false,
+      "type": "text",
+    },
+    {
+      "text": "Here is the picture i'm sharing with you",
+      "isMe": false,
+      "type": "text",
     },
     {
       "text":
           "Hi! How are you?. where are you? can we meet in this sunday . i'm planning about to host a dinner with you",
       "isMe": true,
+      "type": "text",
     },
-    {"text": "I'm good, thanks!", "isMe": false},
-    {"text": "Great to hear!", "isMe": true},
+
+    {"text": "I'm good, thanks!", "isMe": false, "type": "text"},
+    {"text": "Great to hear!", "isMe": true, "type": "text"},
   ];
   final List<String> bottomSheetButton = [
     'View Profile',
@@ -48,7 +61,9 @@ class _InboxMessageScreenState extends State<InboxMessageScreen> {
 
   List<VoidCallback> bottomSheetButtonAction(BuildContext context) {
     return [
-      () {},
+      () {
+        Get.toNamed(AppRoutes.userProfileScreen);
+      },
       () {
         ///for button 2 action
         Get.toNamed(AppRoutes.mediaScreen);
@@ -72,9 +87,49 @@ class _InboxMessageScreenState extends State<InboxMessageScreen> {
   void sendMessage() {
     if (_controller.text.trim().isEmpty) return;
     setState(() {
-      messages.add({'text': _controller.text.trim(), 'isMe': true});
+      messages.add({
+        'text': _controller.text.trim(),
+        'isMe': true,
+        'type': 'text',
+      });
     });
     _controller.clear();
+    //scroll to the latest message
+    Future.delayed(Duration(milliseconds: 100), () {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 200),
+        curve: Curves.easeOut,
+      );
+    });
+  }
+
+  Future<void> _getPhotoFromGallery() async {
+    final image = await _imagePickerHelper.pickFromGallery();
+    if (image != null) {
+      setState(() {
+        _image = image;
+        messages.add({'image': _image, "isMe": true, 'type': 'image'});
+      });
+    }
+    //scroll to the latest message
+    Future.delayed(Duration(milliseconds: 100), () {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 200),
+        curve: Curves.easeOut,
+      );
+    });
+  }
+
+  Future<void> _getPhotoFromCamera() async {
+    final image = await _imagePickerHelper.pickFromCamera();
+    if (image != null) {
+      setState(() {
+        _image = image;
+        messages.add({'image': _image, "isMe": true, 'type': 'image'});
+      });
+    }
     //scroll to the latest message
     Future.delayed(Duration(milliseconds: 100), () {
       _scrollController.animateTo(
@@ -88,6 +143,8 @@ class _InboxMessageScreenState extends State<InboxMessageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
+      // extendBodyBehindAppBar: true,
       appBar: CustomGlobalAppBar(
         title: 'Annette Black',
         centerTitle: false,
@@ -166,9 +223,31 @@ class _InboxMessageScreenState extends State<InboxMessageScreen> {
                               hintText: 'Type message...',
                               maxLine: 4,
                               isPrefixShowing: false,
-                              suffixIcon: Icon(
-                                CupertinoIcons.camera,
-                                color: AppColors.greyColor,
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  customBottomSheet(
+                                    context: context,
+                                    buttons: ['Gallery', 'Camera'],
+                                    onPressedCallbacks: [
+                                      () async {
+                                        await _getPhotoFromGallery();
+                                        if (_image != null) {
+                                          Get.back();
+                                        }
+                                      },
+                                      () async {
+                                        await _getPhotoFromCamera();
+                                        if (_image != null) {
+                                          Get.back();
+                                        }
+                                      },
+                                    ],
+                                  );
+                                },
+                                child: Icon(
+                                  CupertinoIcons.camera,
+                                  color: AppColors.greyColor,
+                                ),
                               ),
                             ),
                           ),
@@ -246,11 +325,20 @@ class _InboxMessageScreenState extends State<InboxMessageScreen> {
                         bottomRight: Radius.circular(16),
                       ),
                     ),
-                    child: CustomText(
-                      text: messages[index]['text'],
-                      textOverflow: TextOverflow.fade,
-                      textAlign: TextAlign.start,
-                    ),
+                    child: messages[index]['type'] == 'text'
+                        ? CustomText(
+                            text: messages[index]['text'],
+                            textOverflow: TextOverflow.fade,
+                            textAlign: TextAlign.start,
+                          )
+                        : messages[index]['type'] == 'image'
+                        ? Image.file(
+                            messages[index]['image'],
+                            fit: BoxFit.cover,
+                            height: 200.h,
+                            width: 200.w,
+                          )
+                        : SizedBox.shrink(),
                   ),
                   CustomText(
                     text: '09:25 AM',

@@ -16,25 +16,34 @@ class _OrbitPostScreenState extends State<OrbitPostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomGlobalAppBar(title: 'Orbit',titleStyle: TextStyle(fontFamily: FontFamily.helvetica,fontWeight: FontWeight.w700),),
-      body:ListView.builder(
+      appBar: CustomGlobalAppBar(
+        title: 'Orbit',
+        titleStyle: TextStyle(
+          fontFamily: FontFamily.helvetica,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      body: ListView.builder(
         itemCount: 7,
-          // padding: EdgeInsets.symmetric(vertical: 8),
-          itemBuilder: (context,index){
-        return  Padding(
-          padding: EdgeInsets.only(bottom:16.r ),
-          child: CardForPost(
-            profileImage: 'https://picsum.photos/200/300',
-            name: "Anny Wilson",
-            userName: "anny_wilson_9",
-            postTitle:
-            "ArthurHazan Quel plaisir de retrouver mes étudiants de Web 2 ! Ils ont tellement progressés depuis l’année dernière ! #Proud",
-            postImage: 'https://picsum.photos/200/300',
-            likeCount: 234,
-            commentCount: 234,
-          ),
-        );
-      })
+        // padding: EdgeInsets.symmetric(vertical: 8),
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(bottom: 16.r),
+            child: CardForPost(
+              profileImage: 'https://picsum.photos/200/300',
+              name: "Anny Wilson",
+              userName: "anny_wilson_9",
+              postTitle:
+                  "ArthurHazan Quel plaisir de retrouver mes étudiants de Web 2 ! Ils ont tellement progressés depuis l’année dernière ! #Proud",
+              postImage: 'https://picsum.photos/200/300',
+              likeCount: 234,
+              commentCount: 234,
+              bottomSheetButtonAction: [() {}, () {}, () {}],
+              bottomSheetButton: ['View Profile', 'Block Profile', 'Report...'],
+            ),
+          );
+        },
+      ),
     );
   }
 }

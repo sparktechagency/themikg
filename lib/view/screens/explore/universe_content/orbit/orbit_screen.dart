@@ -15,7 +15,7 @@ class OrbitScreen extends StatefulWidget {
 class _OrbitScreenState extends State<OrbitScreen> {
   final List<String> dummyImageUrl = List.generate(
     10,
-        (index) => "https://picsum.photos/200/300?random=$index",
+    (index) => "https://picsum.photos/200/300?random=$index",
   );
 
   @override
@@ -34,15 +34,13 @@ class _OrbitScreenState extends State<OrbitScreen> {
             height: 202.h,
             width: 100.w,
             // color: Colors.white,
-            onTap: (){
+            onTap: () {
               Get.toNamed(AppRoutes.orbitPostScreen);
             },
             radiusAll: 8.r,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
-              child: CustomNetworkImage(
-                imageUrl: dummyImageUrl[index],
-              ),
+              child: CustomNetworkImage(imageUrl: dummyImageUrl[index]),
             ),
           );
         },

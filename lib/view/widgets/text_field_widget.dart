@@ -11,7 +11,9 @@ class TextFieldWidget extends StatelessWidget {
     this.suffixIcon,
     this.maxLine,
     this.controller,
-    this.textInputAction
+    this.textInputAction,
+    this.hintFontSize,
+    this.keyboardType,
   });
 
   final String hintText;
@@ -20,6 +22,8 @@ class TextFieldWidget extends StatelessWidget {
   final int? maxLine;
   final TextEditingController? controller;
   final TextInputAction? textInputAction;
+  final double? hintFontSize;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +31,7 @@ class TextFieldWidget extends StatelessWidget {
       controller: controller,
       textInputAction: textInputAction,
       cursorColor: AppColors.primaryColor,
+      keyboardType: keyboardType,
       minLines: 1,
       maxLines: maxLine,
       style: TextStyle(
@@ -41,20 +46,23 @@ class TextFieldWidget extends StatelessWidget {
             : null,
 
         hintText: hintText,
-        hintStyle: TextStyle(color: AppColors.greyColor),
+        hintStyle: TextStyle(
+          color: AppColors.greyColor,
+          fontSize: hintFontSize,
+        ),
         filled: true,
         fillColor: AppColors.filledColor,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.r),
-          borderSide: BorderSide(color: AppColors.greyColor),
+          borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.5)),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.r),
-          borderSide: BorderSide(color: AppColors.greyColor),
+          borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.5)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.r),
-          borderSide: BorderSide(color: AppColors.greyColor),
+          borderSide: BorderSide(color: AppColors.greyColor.withOpacity(.5)),
         ),
       ),
     );

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:themikg/app/routes/app_routes.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
-import 'package:themikg/gen/fonts.gen.dart';
 import 'package:themikg/view/widgets/custom_button.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 import 'package:themikg/view/widgets/custom_text_field.dart';
@@ -206,19 +205,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _onTapSignUpButton() {
-    // if (_formKey.currentState!.validate()) {
-    //   if (_agreeButton == true) {
-    //     Get.offAllNamed(AppRoutes.bottomNavBarScreen);
-    //   } else {
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //       SnackBar(
-    //         content: Text('Please agree to the Terms & Condition to continue'),
-    //         backgroundColor: Colors.red,
-    //       ),
-    //     );
-    //   }
+    if (_formKey.currentState!.validate()) {
+      if (_agreeButton == true) {
+        Get.offAllNamed(AppRoutes.editProfileScreen);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Please agree to the Terms & Condition to continue'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
 
-    //}
-    Get.offAllNamed(AppRoutes.bottomNavBarScreen);
+    }
   }
 }

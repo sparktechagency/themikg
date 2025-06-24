@@ -232,6 +232,10 @@ class $AssetsImagesGen {
   AssetGenImage get splashScreenBgImage =>
       const AssetGenImage('assets/images/splashScreenBgImage.gif');
 
+  /// File path: assets/images/walletBgPage.png
+  AssetGenImage get walletBgPage =>
+      const AssetGenImage('assets/images/walletBgPage.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     appLogo,
@@ -241,6 +245,7 @@ class $AssetsImagesGen {
     piroscop,
     searchByLocationImage,
     splashScreenBgImage,
+    walletBgPage,
   ];
 }
 

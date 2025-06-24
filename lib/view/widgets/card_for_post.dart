@@ -22,6 +22,8 @@ class CardForPost extends StatefulWidget {
     required this.postImage,
     required this.likeCount,
     required this.commentCount,
+    required this.bottomSheetButtonAction, // Define the action button list
+    required this.bottomSheetButton, // Define the button list
   });
 
   final String profileImage;
@@ -31,6 +33,8 @@ class CardForPost extends StatefulWidget {
   final String postImage;
   final int likeCount;
   final int commentCount;
+  final List<VoidCallback> bottomSheetButtonAction;  // Action for each button in the bottom sheet
+  final List<String> bottomSheetButton;  // Button labels in the bottom sheet
 
   @override
   State<CardForPost> createState() => _CardForPostState();
@@ -44,17 +48,10 @@ class _CardForPostState extends State<CardForPost> {
     Assets.icons.reactIcon2.path,
     Assets.icons.reactIcon3.path,
   ];
-  final List<String> bottomSheetButton = [
-    'View Profile',
-    'Block Profile',
-    'Report...',
-  ];
-  final List<VoidCallback> bottomSheetButtonAction = [() {}, () {}, () {}];
 
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      // paddingBottom: 16.h,
       color: AppColors.postCardColor,
       topRightRadius: 16.r,
       topLeftRadius: 16.r,
@@ -73,7 +70,7 @@ class _CardForPostState extends State<CardForPost> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ///<<<<<========Post header (name, userName,Profile pic)==========>>>>
+            /// Post header (name, userName,Profile pic)
             ListTile(
               contentPadding: EdgeInsets.all(0),
               leading: CustomNetworkImage(
@@ -96,54 +93,15 @@ class _CardForPostState extends State<CardForPost> {
                 onTap: () {
                   customBottomSheet(
                     context: context,
-                    buttons: bottomSheetButton,
-                    onPressedCallbacks: bottomSheetButtonAction,
+                    buttons: widget.bottomSheetButton, // Using the bottom sheet buttons
+                    onPressedCallbacks: widget.bottomSheetButtonAction, // Using the button actions
                   );
-                  // showModalBottomSheet(
-                  //   context: context,
-                  //   scrollControlDisabledMaxHeightRatio: .20,
-                  //   builder: (context) {
-                  //     return CustomContainer(
-                  //       width: double.infinity,
-                  //       topLeftRadius: 24.r,
-                  //       topRightRadius: 24.r,
-                  //       color: AppColors.bgColor,
-                  //       child: Column(
-                  //         crossAxisAlignment: CrossAxisAlignment.start,
-                  //         children: List.generate(bottomSheetButton.length, (
-                  //           index,
-                  //         ) {
-                  //           return TextButton(
-                  //             // autofocus: true,
-                  //             style: TextButton.styleFrom(
-                  //               backgroundColor: Colors.transparent,
-                  //               overlayColor: AppColors.primaryColor
-                  //                   .withOpacity(0.2),
-                  //
-                  //               shape: RoundedRectangleBorder(
-                  //                 borderRadius: BorderRadius.circular(8.r),
-                  //               ),
-                  //             ),
-                  //             onPressed: () {},
-                  //             child: CustomText(
-                  //               text: bottomSheetButton[index],
-                  //               fontSize: 18.sp,
-                  //               // fontName: FontFamily.trajanPro,
-                  //               fontWeight: FontWeight.w700,
-                  //               color: index == 2 ? AppColors.errorColor : null,
-                  //             ),
-                  //           );
-                  //         }),
-                  //       ),
-                  //     );
-                  //   },
-                  // );
                 },
                 child: Assets.icons.moreCircleIcon.svg(),
               ),
             ),
 
-            ///<<<<<=====================Post section=====================>>>>
+            /// Post section
             CustomText(
               text: widget.postTitle,
               textAlign: TextAlign.start,
@@ -151,13 +109,13 @@ class _CardForPostState extends State<CardForPost> {
             ),
             SizedBox(height: 16.h),
 
-            ///<<<<<===================Post Image=====================>>>>
+            /// Post Image
             ProductImageCarouselSlider(imageUrl: widget.postImage),
             SizedBox(height: 16.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ///<<<<<================Post React Comment and Save button========================>>>>
+                /// Post React Comment and Save button
                 Row(
                   spacing: 8.r,
                   children: [
@@ -172,8 +130,6 @@ class _CardForPostState extends State<CardForPost> {
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 8.w),
                             child: SvgPicture.asset(
-                              // height: 20.h,
-                              // width: 20.w,
                               reactIcon[index],
                               color: selectedIndex == index
                                   ? AppColors.primaryColor
@@ -183,7 +139,6 @@ class _CardForPostState extends State<CardForPost> {
                         );
                       }),
                     ),
-
                     CustomText(text: widget.likeCount.toString()),
                     SizedBox(width: 8.w),
                     GestureDetector(
@@ -215,3 +170,4 @@ class _CardForPostState extends State<CardForPost> {
     );
   }
 }
+

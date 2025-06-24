@@ -1,9 +1,17 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:themikg/app/routes/app_routes.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/fonts.gen.dart';
+import 'package:themikg/helper/image_picker_helper.dart';
+import 'package:themikg/view/widgets/custom_bottom_sheet.dart';
 import 'package:themikg/view/widgets/custom_button.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_global_app_bar.dart';
@@ -11,7 +19,6 @@ import 'package:themikg/view/widgets/custom_network_image.dart';
 import 'package:themikg/view/widgets/custom_pop_up_menu.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
 import 'package:themikg/view/widgets/custom_text_field.dart';
-import 'package:themikg/view/widgets/text_field_widget.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -79,6 +86,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     'Dating',
   ];
   final List<String> roleList = ['Active', 'Versatile', 'Passive'];
+  final ImagePickerHelper _imagePickerHelper = ImagePickerHelper();
+  File? _profileImage;
+
+  Future<void> _getPhotoFromGallery() async {
+    final image = await _imagePickerHelper.pickFromGallery();
+    if (image != null) {
+      setState(() {
+        _profileImage = image;
+      });
+    }
+  }
+
+  Future<void> _getPhotoFromCamera() async {
+    final image = await _imagePickerHelper.pickFromCamera();
+    if (image != null) {
+      setState(() {
+        _profileImage = image;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,28 +193,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       controller: _sizeTEController,
                       menuColor: AppColors.borderColor,
                     ),
-                    // suffixIcon: PopupMenuButton<String>(
-                    //   icon: Icon(
-                    //     Icons.arrow_drop_down_sharp,
-                    //     size: 30.h,
-                    //     color: Colors.white,
-                    //   ),
-                    //   color: AppColors.borderColor,
-                    //   itemBuilder: (BuildContext context) =>
-                    //       List.generate(sizeList.length, (index) {
-                    //         return PopupMenuItem<String>(
-                    //           value: sizeList[index],
-                    //           child: CustomText(text: sizeList[index]),
-                    //         );
-                    //       }),
-                    //   onSelected: (String size) {
-                    //     setState(() {
-                    //       _sizeTEController.text = size;
-                    //     });
-                    //   },
-                    //
-                    //   // icon: Icon(Icons.public,color: Colors.white,),
-                    // ),
                   ),
                   SizedBox(height: 16.h),
                   _heightWeightTextField(
@@ -359,7 +364,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ],
                   ),
                   SizedBox(height: 32.h),
-                  CustomButton(onPressed: () {}, label: 'Continue',fontSize: 20.sp,fontWeight: FontWeight.w700,),
+                  CustomButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.yourCuriosityScreen);
+                    },
+                    label: 'Continue',
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
                   SizedBox(height: 32.h),
                 ],
               ),
@@ -449,14 +461,34 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        CustomNetworkImage(
-          imageUrl: "https://i.pravatar.cc/150?img=31",
+        CustomContainer(
           height: 120.h,
           width: 120.w,
-          borderRadius: BorderRadius.circular(1000.r),
+          shape: BoxShape.circle,
+          child: _profileImage == null
+              ? CustomNetworkImage(
+                  imageUrl: "https://i.pravatar.cc/150?img=31",
+                  height: 120.h,
+                  width: 120.w,
+                  borderRadius: BorderRadius.circular(1000.r),
+                )
+              : ClipOval(child: Image.file(_profileImage!, fit: BoxFit.cover)),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            customBottomSheet(
+              context: context,
+              buttons: ['Gallery', 'Camera'],
+              onPressedCallbacks: [
+                () {
+                  _getPhotoFromGallery();
+                },
+                () {
+                  _getPhotoFromCamera();
+                },
+              ],
+            );
+          },
           child: CustomContainer(
             alignment: Alignment.center,
             height: 30.h,
@@ -473,5 +505,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _nameTEController.dispose();
+    _dateOfBirthTEController.dispose();
+    _sizeTEController.dispose();
+    _heightTEController.dispose();
+    _weightTEController.dispose();
+    _locationTEController.dispose();
+    _ethnicityTEController.dispose();
+    _situationTEController.dispose();
+    _roleTEController.dispose();
+    super.dispose();
   }
 }
