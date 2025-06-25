@@ -26,6 +26,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/addIcon.svg
   SvgGenImage get addIcon => const SvgGenImage('assets/icons/addIcon.svg');
 
+  /// File path: assets/icons/addIconActive.svg
+  SvgGenImage get addIconActive =>
+      const SvgGenImage('assets/icons/addIconActive.svg');
+
   /// File path: assets/icons/alertDialogImage.svg
   SvgGenImage get alertDialogImage =>
       const SvgGenImage('assets/icons/alertDialogImage.svg');
@@ -101,6 +105,10 @@ class $AssetsIconsGen {
   SvgGenImage get nameFieldIcon =>
       const SvgGenImage('assets/icons/nameFieldIcon.svg');
 
+  /// File path: assets/icons/nebuloxIcon.svg
+  SvgGenImage get nebuloxIcon =>
+      const SvgGenImage('assets/icons/nebuloxIcon.svg');
+
   /// File path: assets/icons/notificationIcon.svg
   SvgGenImage get notificationIcon =>
       const SvgGenImage('assets/icons/notificationIcon.svg');
@@ -164,6 +172,7 @@ class $AssetsIconsGen {
     inboxMessageIcon,
     aboutUsIcon,
     addIcon,
+    addIconActive,
     alertDialogImage,
     blinkIcon,
     changePasswordIcon,
@@ -184,6 +193,7 @@ class $AssetsIconsGen {
     myProfileIcon,
     myProfileIconActive,
     nameFieldIcon,
+    nebuloxIcon,
     notificationIcon,
     orbitIcon,
     passwordIcon,

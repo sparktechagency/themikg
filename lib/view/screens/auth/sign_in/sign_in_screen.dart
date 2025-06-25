@@ -65,10 +65,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: () {
                           Get.toNamed(AppRoutes.forgetPasswordEmailScreen);
                         },
-                        child: CustomText(text: 'Forgot Password',
+                        child: CustomText(
+                          text: 'Forgot Password',
                           color: AppColors.greyColor,
-                          textAlign: TextAlign.end,),
-
+                          textAlign: TextAlign.end,
+                        ),
                       ),
                     ],
                   ),
@@ -96,8 +97,8 @@ class _SignInScreenState extends State<SignInScreen> {
                             color: AppColors.primaryColor,
                             fontFamily: 'Helvetica',
                           ),
-                          recognizer:
-                              TapGestureRecognizer()..onTap = _onTapSignUpButton,
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = _onTapSignUpButton,
                         ),
                       ],
                     ),
@@ -112,7 +113,9 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void _onTapSignInButton() {
-    if (_formKey.currentState!.validate()) {}
+    if (_formKey.currentState!.validate()) {
+      Get.offAllNamed(AppRoutes.bottomNavBarScreen);
+    }
   }
 
   void _onTapSignUpButton() {

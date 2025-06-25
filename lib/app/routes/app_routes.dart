@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:themikg/view/screens/add_content/upload_orbit/upload_orbit_screen.dart';
+import 'package:themikg/view/screens/add_content/video_recording/video_recording_screen.dart';
 import 'package:themikg/view/screens/auth/forget_password/forget_password_email.dart';
 import 'package:themikg/view/screens/auth/forget_password/forget_password_otp_screen.dart';
 import 'package:themikg/view/screens/auth/onboarding/onboarding_screen.dart';
@@ -9,7 +11,6 @@ import 'package:themikg/view/screens/auth/splash_screen/splash_screen.dart';
 import 'package:themikg/view/screens/bottom_nav_bar/bottom_nav_bar_screen.dart';
 import 'package:themikg/view/screens/explore/explore_screen.dart';
 import 'package:themikg/view/screens/explore/people_by_location/people_by_location_screen.dart';
-import 'package:themikg/view/screens/explore/universe_content/blink/blink_screen.dart';
 import 'package:themikg/view/screens/explore/universe_content/blink/blink_video/blink_video_screen.dart';
 import 'package:themikg/view/screens/explore/universe_content/orbit/orbit_post/orbit_post_screen.dart';
 import 'package:themikg/view/screens/explore/universe_content/orbit/orbit_screen.dart';
@@ -23,6 +24,7 @@ import 'package:themikg/view/screens/message/inbox_message/video_call/video_call
 import 'package:themikg/view/screens/message/media/media_screen.dart';
 import 'package:themikg/view/screens/message/message_screen.dart';
 import 'package:themikg/view/screens/my_profile/edit_profile/edit_profile_screen.dart';
+import 'package:themikg/view/screens/my_profile/edit_profile/find_your_people/find_your_people_screen.dart';
 import 'package:themikg/view/screens/my_profile/edit_profile/your_curiosity/your_curiosity_screen.dart';
 import 'package:themikg/view/screens/my_profile/my_blink/my_blink_screen.dart';
 import 'package:themikg/view/screens/my_profile/my_orbit/my_orbit_screen.dart';
@@ -79,6 +81,9 @@ class AppRoutes {
   static const String reportSubmitScreen = '/reportSubmitScreen';
   static const String userProfileScreen = '/userProfileScreen';
   static const String yourCuriosityScreen = '/yourCuriosityScreen';
+  static const String findYourPeopleScreen = '/findYourPeopleScreen';
+  static const String uploadOrbitScreen = '/uploadOrbitScreen';
+  static const String videoRecordingScreen = '/videoRecordingScreen';
 
 
   static List<GetPage> get routes => [
@@ -120,5 +125,8 @@ class AppRoutes {
     GetPage(name: reportSubmitScreen, page: () => SubmitReportScreen()),
     GetPage(name: userProfileScreen, page: () => UserProfileScreen()),
     GetPage(name: yourCuriosityScreen, page: () => YourCuriosityScreen()),
+    GetPage(name: findYourPeopleScreen, page: () => FindYourPeopleScreen()),
+    GetPage(name: uploadOrbitScreen, page: () => UploadOrbitScreen()),
+    // GetPage(name: videoRecordingScreen, page: () => VideoRecordingScreen(videoFile: videoFile)),
   ];
 }

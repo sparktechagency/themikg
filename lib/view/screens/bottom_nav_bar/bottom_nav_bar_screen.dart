@@ -1,8 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:themikg/app/routes/app_routes.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/assets.gen.dart';
+import 'package:themikg/helper/image_picker_helper.dart';
+import 'package:themikg/view/screens/add_content/nebulox/nebulox_screen.dart';
+import 'package:themikg/view/screens/add_content/video_recording/video_recording_screen.dart';
 import 'package:themikg/view/screens/explore/explore_screen.dart';
 import 'package:themikg/view/screens/home/home_screen.dart';
 import 'package:themikg/view/screens/message/message_screen.dart';
@@ -18,16 +26,132 @@ class BottomNavBarScreen extends StatefulWidget {
 }
 
 class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
+  final ImagePickerHelper _imagePickerHelper = ImagePickerHelper();
+  File? _profileImage;
+  File? _videoFile;
   int _selectedIndex = 0;
   final List<Widget> _screens = [
     HomeScreen(),
     ExploreScreen(),
-    Center(child: CustomText(text: 'Add Page')),
-    // Center(child: CustomText(text: 'Message Page')),
+    Container(),
     MessageScreen(),
-    // Center(child: CustomText(text: 'Profile Page')),
-    MyProfileScreen()
+    MyProfileScreen(),
   ];
+
+  Future<void> _getPhotoFromCamera() async {
+    final image = await _imagePickerHelper.pickFromCamera();
+    if (image != null) {
+      setState(() {
+        _profileImage = image;
+      });
+      Get.to(() => NebuloxScreen(image: _profileImage!));
+    }
+  }
+
+  Future<void> _pickVideo() async {
+    File? video = await _imagePickerHelper.pickVideoFromCamera();
+    if (video != null) {
+      setState(() {
+        _videoFile = video;
+      });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => VideoRecordingScreen(videoFile: _videoFile!),
+        ),
+      );
+    }
+  }
+
+  Widget menuItem(String title, String icon) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.h),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CustomText(text: title, fontWeight: FontWeight.w600),
+          SizedBox(width: 16.w),
+          SvgPicture.asset(
+            icon,
+            color: Colors.white,
+            height: 24.h,
+            width: 24.w,
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _handleAddButtonTap() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.transparent,
+          alignment: Alignment(-1, .9),
+          title: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              // Main Container
+              Container(
+                padding: EdgeInsets.all(16),
+                margin: EdgeInsets.only(bottom: 10),
+                decoration: BoxDecoration(
+                  color: Colors.black87,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.uploadOrbitScreen);
+                      },
+                      child: menuItem("Orbit", Assets.icons.orbitIcon.path),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _pickVideo();
+                      },
+                      child: menuItem("Blink", Assets.icons.blinkIcon.path),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _pickVideo();
+                      },
+                      child: menuItem("Staller", Assets.icons.stellaIcon.path),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _getPhotoFromCamera();
+                      },
+                      child: menuItem("Nebulox", Assets.icons.nebuloxIcon.path),
+                    ),
+                  ],
+                ),
+              ),
+              // Arrow Indicator
+              Positioned(
+                bottom: 0,
+                child: Transform.rotate(
+                  angle: 45 * 3.1416 / 180,
+                  child: Container(width: 20, height: 20, color: Colors.black),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _handleNavigationTap(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +169,13 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
               bool isSelected = _selectedIndex == index;
               return GestureDetector(
                 onTap: () {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
+                  if (index == 2) {
+                    // Handle the special "Add" button case
+                    _handleAddButtonTap();
+                  } else {
+                    // Normal navigation case
+                    _handleNavigationTap(index);
+                  }
                 },
                 child: SvgPicture.asset(
                   isSelected
@@ -75,7 +203,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     },
     {
       'icon': Assets.icons.addIcon.path,
-      'activeIcon': Assets.icons.addIcon.path,
+      'activeIcon': Assets.icons.addIconActive.path,
     },
     {
       'icon': Assets.icons.inboxMessageIcon.path,
