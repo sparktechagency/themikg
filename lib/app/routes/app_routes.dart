@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:themikg/view/screens/add_content/nebulox/nebulox_screen.dart';
 import 'package:themikg/view/screens/add_content/upload_orbit/upload_orbit_screen.dart';
 import 'package:themikg/view/screens/add_content/video_recording/video_recording_screen.dart';
 import 'package:themikg/view/screens/auth/forget_password/forget_password_email.dart';
@@ -84,6 +85,7 @@ class AppRoutes {
   static const String findYourPeopleScreen = '/findYourPeopleScreen';
   static const String uploadOrbitScreen = '/uploadOrbitScreen';
   static const String videoRecordingScreen = '/videoRecordingScreen';
+  // static const String uploadNebuloxScreen = '/uploadNebuloxScreen';
 
 
   static List<GetPage> get routes => [
@@ -127,6 +129,7 @@ class AppRoutes {
     GetPage(name: yourCuriosityScreen, page: () => YourCuriosityScreen()),
     GetPage(name: findYourPeopleScreen, page: () => FindYourPeopleScreen()),
     GetPage(name: uploadOrbitScreen, page: () => UploadOrbitScreen()),
+    // GetPage(name: uploadNebuloxScreen, page: () => NebuloxScreen(image: image)),
     // GetPage(name: videoRecordingScreen, page: () => VideoRecordingScreen(videoFile: videoFile)),
   ];
 }

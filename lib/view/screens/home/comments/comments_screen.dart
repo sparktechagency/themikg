@@ -8,6 +8,7 @@ import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_global_app_bar.dart';
 import 'package:themikg/view/widgets/custom_network_image.dart';
 import 'package:themikg/view/widgets/custom_text.dart';
+import 'package:themikg/view/widgets/text_field_widget.dart';
 
 class CommentsScreen extends StatefulWidget {
   const CommentsScreen({super.key});
@@ -28,48 +29,122 @@ class _CommentsScreenState extends State<CommentsScreen> {
       commentTime: DateTime.now(),
     ),
     CommentModel(
-      profileImage: "https://i.pravatar.cc/150?img=21",
-      name: 'Lina Suarez',
-      userName: 'lina_s',
+      profileImage: "https://i.pravatar.cc/150?img=20",
+      name: 'James Hudson',
+      userName: 'j_hudson',
       comment:
       'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       likeCount: 453,
       commentTime: DateTime.now(),
     ),
     CommentModel(
-      profileImage: "https://i.pravatar.cc/150?img=22",
-      name: 'Lina Suarez',
-      userName: 'lina_s',
+      profileImage: "https://i.pravatar.cc/150?img=20",
+      name: 'James Hudson',
+      userName: 'hudso_134n',
       comment:
       'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       likeCount: 453,
       commentTime: DateTime.now(),
     ),
+    CommentModel(
+      profileImage: "https://i.pravatar.cc/150?img=20",
+      name: 'James Hudson',
+      userName: 'dsfh15',
+      comment:
+      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      likeCount: 453,
+      commentTime: DateTime.now(),
+    ),
+    CommentModel(
+      profileImage: "https://i.pravatar.cc/150?img=20",
+      name: 'James Hudson',
+      userName: 'sdfj1234',
+      comment:
+      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      likeCount: 453,
+      commentTime: DateTime.now(),
+    ),
+    // More comment models...
   ];
-  List<String> bottomSheetButton = ['Edit', 'Delete'];
+
+  String hintText = 'Your comment...';
+
+  void onReplyTap(String userName) {
+    setState(() {
+      hintText = 'Replying to $userName';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomGlobalAppBar(title: 'Comments'),
-      body: ListView.builder(
-        itemCount: commentData.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.all(16.r),
-            child: CommentWidget(
-              profileImage: commentData[index].profileImage,
-              userName: commentData[index].userName,
-              name: commentData[index].name,
-              commentText: commentData[index].comment,
-              commentLikesCount: commentData[index].likeCount,
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: commentData.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.all(16.r),
+                  child: CommentWidget(
+                    profileImage: commentData[index].profileImage,
+                    userName: commentData[index].userName,
+                    name: commentData[index].name,
+                    commentText: commentData[index].comment,
+                    commentLikesCount: commentData[index].likeCount,
+                    onTapReplay: () => onReplyTap(commentData[index].userName),
+                  ),
+                );
+              },
             ),
-          );
-        },
+          ),
+          CustomContainer(
+            alignment: Alignment.center,
+            height: 154.h,
+            linearColors: [Color(0xFF282828), Color(0xFF0E0E0E)],
+            child: Padding(
+              padding: EdgeInsets.all(24.r),
+              child: Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(1000.r),
+                    child: CustomNetworkImage(
+                      imageUrl: "https://i.pravatar.cc/150?img=21",
+                      height: 40.h,
+                      width: 40.w,
+                    ),
+                  ),
+                  SizedBox(width: 8.w),
+                  Expanded(
+                    child: TextFieldWidget(
+                      hintText: hintText, // Default hint text
+                      isPrefixShowing: false,
+                    ),
+                  ),
+                  SizedBox(width: 8.w),
+                  CustomContainer(
+                    alignment: Alignment.center,
+                    height: 52.h,
+                    width: 52.w,
+                    shape: BoxShape.circle,
+                    color: AppColors.primaryColor,
+                    child: Assets.icons.sendMessageIcon.svg(
+                      height: 20.h,
+                      width: 20.w,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+
 
 class CommentWidget extends StatefulWidget {
   const CommentWidget({
@@ -79,6 +154,7 @@ class CommentWidget extends StatefulWidget {
     required this.name,
     required this.commentText,
     required this.commentLikesCount,
+    this.onTapReplay,
   });
 
   final String profileImage;
@@ -86,6 +162,7 @@ class CommentWidget extends StatefulWidget {
   final String name;
   final String commentText;
   final int commentLikesCount;
+  final void Function()? onTapReplay;
 
   @override
   State<CommentWidget> createState() => _CommentWidgetState();
@@ -117,9 +194,11 @@ class _CommentWidgetState extends State<CommentWidget> {
           ),
           trailing: GestureDetector(
             onTap: () {
-              customBottomSheet(context: context,
-                  buttons: bottomSheetButton,
-                  onPressedCallbacks: bottomSheetButtonAction);
+              customBottomSheet(
+                context: context,
+                buttons: bottomSheetButton,
+                onPressedCallbacks: bottomSheetButtonAction,
+              );
             },
             child: Assets.icons.moreCircleIcon.svg(),
           ),
@@ -145,9 +224,10 @@ class _CommentWidgetState extends State<CommentWidget> {
                 CustomText(text: widget.commentLikesCount.toString()),
               ],
             ),
+            // The "Reply" button
             TextButton(
-              onPressed: () {},
-              child: CustomText(text: 'Replay', fontSize: 12.sp),
+              onPressed: widget.onTapReplay, // Change hint text when tapped
+              child: CustomText(text: 'Reply', fontSize: 12.sp),
             ),
             SizedBox.shrink(),
             CustomText(
@@ -161,3 +241,4 @@ class _CommentWidgetState extends State<CommentWidget> {
     );
   }
 }
+
