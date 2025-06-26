@@ -140,6 +140,9 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
                   child: Container(width: 20, height: 20, color: Colors.black),
                 ),
               ),
+              // Positioned(
+              //   bottom: -1,
+              //     child: Assets.icons.addIconActive.svg()),
             ],
           ),
         );

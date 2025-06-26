@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:themikg/app/utils/app_color.dart';
 import 'package:themikg/gen/fonts.gen.dart';
+import 'package:themikg/view/screens/explore/universe_content/blink/blink_video/blink_video_screen.dart';
+import 'package:themikg/view/widgets/blink_post_widget.dart';
 import 'package:themikg/view/widgets/custom_container.dart';
 import 'package:themikg/view/widgets/custom_global_app_bar.dart';
 import 'package:themikg/view/widgets/custom_network_image.dart';
@@ -31,35 +33,61 @@ class _VaultScreenState extends State<VaultScreen> {
         ),
         centerTitle: false,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.r),
-        child: Column(
-          children: [
-            _buildTitle('Orbit', () {}),
-            GridView.builder(
-              itemCount: 10,
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 4,
-                mainAxisSpacing: 4,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.r),
+          child: Column(
+            children: [
+              _buildTitle('Orbit', () {}),
+              GridView.builder(
+                itemCount: 10,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 4,
+                  mainAxisSpacing: 4,
+                ),
+                itemBuilder: (context, index) {
+                  return CustomContainer(
+                    height: 124.h,
+                    width: 112.w,
+                    color: Colors.transparent,
+                    radiusAll: 8.r,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.r),
+                      child: CustomNetworkImage(imageUrl: dummyImageUrl[index]),
+                    ),
+                  );
+                },
               ),
-              itemBuilder: (context, index) {
-                return CustomContainer(
-                  height: 124.h,
-                  width: 112.w,
-                  color: Colors.transparent,
-                  radiusAll: 8.r,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.r),
-                    child: CustomNetworkImage(imageUrl: dummyImageUrl[index]),
-                  ),
-                );
-              },
-            ),
-            SizedBox(height: 24.h),
-            _buildTitle('Blink', () {}),
-          ],
+              SizedBox(height: 24.h),
+              _buildTitle('Blink', () {}),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  crossAxisCount: 3,
+                  childAspectRatio: .55,
+                ),
+                itemCount: dummyImageUrl.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ReelsScreen()),
+                      );
+                      // ReelsScreen(reelsList: reelsList);
+                    },
+                    child: BlinkPostWidget(imageUrl: dummyImageUrl[index]),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
