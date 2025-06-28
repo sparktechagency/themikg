@@ -53,11 +53,11 @@ class CustomTextField extends StatefulWidget {
     this.hintextSize,
     this.labelText,
     this.isPassword = false,
-    this.readOnly = false,
+    this.readOnly = false, // Default false
     this.borderRadio,
     this.onTap,
     this.onChanged,
-    this.title
+    this.title,
   });
 
   @override
@@ -78,22 +78,26 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-       ?widget.title!=null? CustomText(text: widget.title??''):null,
-       widget.title!=null? SizedBox(height: 8.h,):SizedBox(height: 0,),
+        // Only render the title if it's not null
+        if (widget.title != null)
+          CustomText(
+            text: widget.title!,
+          ),
+        if (widget.title != null)
+          SizedBox(height: 8.h),
+
         TextFormField(
           onChanged: widget.onChanged,
           onTap: widget.onTap,
-          readOnly: widget.readOnly!,
+          readOnly: widget.readOnly ?? false, // Default to false if null
           controller: widget.controller,
           keyboardType: widget.keyboardType,
           obscuringCharacter: widget.obscure!,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           maxLines: widget.maxLine ?? 1,
-          textInputAction:widget.textInputAction ,
-          // validator: widget.validator,
-          validator:
-              widget.validator ??
-              (value) {
+          textInputAction: widget.textInputAction,
+          validator: widget.validator ??
+                  (value) {
                 final val = value?.trim() ?? ''; // Safe null handling
                 final hint = widget.hintText?.toLowerCase() ?? ''; // Safe fallback
 
@@ -116,7 +120,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 }
                 return null;
               },
-
           cursorColor: Colors.grey,
           obscureText: widget.isPassword ? obscureText : false,
           style: TextStyle(
@@ -124,7 +127,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
             fontSize: widget.hintextSize ?? 14.h,
           ),
           decoration: InputDecoration(
-            // constraints: BoxConstraints(minHeight: 50.h, maxHeight: 51.h),
             contentPadding: EdgeInsets.symmetric(
               horizontal: widget.contentPaddingHorizontal ?? 20.w,
               vertical: widget.contentPaddingVertical ?? 10.h,
@@ -135,17 +137,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
               padding: EdgeInsets.only(left: 16, right: 16),
               child: widget.prefixIcon,
             ),
-            suffixIcon:
-                widget.isPassword
-                    ? GestureDetector(
-                      onTap: toggle,
-                      child: _suffixIcon(
-                        (obscureText
-                            ? Assets.icons.eyeOffIcon.svg(color: Colors.white)
-                            : Assets.icons.eyeOnIcon.svg()),
-                      ),
-                    )
-                    : widget.suffixIcon,
+            suffixIcon: widget.isPassword
+                ? GestureDetector(
+              onTap: toggle,
+              child: _suffixIcon(
+                (obscureText
+                    ? Assets.icons.eyeOffIcon.svg(color: Colors.white)
+                    : Assets.icons.eyeOnIcon.svg()),
+              ),
+            )
+                : widget.suffixIcon,
             prefixIconConstraints: BoxConstraints(minHeight: 24.w, minWidth: 24.w),
             labelText: widget.labelText,
             hintText: widget.hintText,
